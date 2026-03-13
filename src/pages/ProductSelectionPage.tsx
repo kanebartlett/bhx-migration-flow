@@ -220,14 +220,6 @@ export function ProductSelectionPage() {
           Choose Your Premium Parking
         </h1>
 
-        <p style={{
-          fontSize: typography.fontSize.xl,
-          color: colors.gray[600],
-          marginBottom: spacing[8],
-          textAlign: 'center',
-        }}>
-          All options include meet & greet service with car cleaning
-        </p>
 
         {/* Loading State */}
         {loading && (
@@ -323,7 +315,7 @@ export function ProductSelectionPage() {
                     alt={product.name}
                     style={{
                       width: '100%',
-                      height: '180px',
+                      height: '220px',
                       objectFit: 'cover',
                     }}
                   />
@@ -433,20 +425,20 @@ export function ProductSelectionPage() {
               borderRadius: borderRadius.xl,
               overflow: 'hidden',
               boxShadow: shadows.lg,
-              border: `2px solid ${colors.gray[300]}`,
-              opacity: 0.8,
+              border: `3px solid #ffd412`,
+              opacity: 1,
             }}>
               {/* Not Available Badge */}
               <div style={{
-                background: colors.gray[400],
-                color: colors.white,
+                background: '#000000',
+                color: '#ffffff',
                 padding: `${spacing[3]} ${spacing[4]}`,
                 fontSize: typography.fontSize.sm,
                 fontWeight: typography.fontWeight.bold,
                 textAlign: 'center',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
-                height: '180px',
+                height: '220px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
