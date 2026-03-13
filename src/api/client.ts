@@ -34,7 +34,7 @@ export async function fetchCarParkAvailability(
 
   try {
     const queryParams = new URLSearchParams({
-      ABTANumber: ABTA_NUMBER,
+      ABTANumber: params.agent || ABTA_NUMBER,
       key: API_KEY,
       token: API_TOKEN,
       ArrivalDate: params.arrivalDate,

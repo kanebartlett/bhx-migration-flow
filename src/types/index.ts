@@ -6,6 +6,7 @@ export interface ParkingSearchParams {
   departureDate: string; // YYYY-MM-DD
   departureTime: string; // HH:MM
   location: string; // e.g., 'BHX'
+  agent?: string; // Agent code for pricing (e.g., 'WEB1', 'BD079')
 }
 
 export interface CarParkProduct {

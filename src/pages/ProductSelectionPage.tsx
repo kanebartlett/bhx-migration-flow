@@ -85,6 +85,7 @@ export function ProductSelectionPage() {
         const departureDate = searchParams.get('departureDate');
         const departureTime = searchParams.get('departureTime');
         const location = searchParams.get('location');
+        const agent = searchParams.get('agent');
 
         if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || !location) {
           setError('Missing required search parameters');
@@ -99,6 +100,7 @@ export function ProductSelectionPage() {
           departureDate,
           departureTime,
           location,
+          agent: agent || undefined,
         };
 
         // Fetch all products
