@@ -425,8 +425,8 @@ export function ProductSelectionPage() {
               borderRadius: borderRadius.xl,
               overflow: 'hidden',
               boxShadow: shadows.lg,
-              border: `3px solid #ffd412`,
-              opacity: 1,
+              border: `2px solid ${colors.gray[300]}`,
+              opacity: 0.8,
             }}>
               {/* Not Available Badge */}
               <div style={{
@@ -442,6 +442,7 @@ export function ProductSelectionPage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                border: `3px solid #ffd412`,
               }}>
                 No Longer Available
               </div>
