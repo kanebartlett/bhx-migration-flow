@@ -28,11 +28,13 @@ export function ProductSelectionPage() {
   const [products, setProducts] = useState<CarParkProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [bhxCarPark1, setBhxCarPark1] = useState<{ name: string; price: number; timeToTerminal: number; isLive: boolean }>({
-    ...OLD_PRODUCT_DATA,
+  const [bhxCarPark1, setBhxCarPark1] = useState<{ name: string; price: number | null; timeToTerminal: number; isLive: boolean }>({
+    name: 'BHX Car Park 1',
+    price: null,
+    timeToTerminal: 10,
     isLive: false,
   });
-  const [bhxLoading, setBhxLoading] = useState(false);
+  const [bhxLoading, setBhxLoading] = useState(true);
 
   const loadBHXPrices = async (params: ParkingSearchParams) => {
     try {
@@ -492,39 +494,43 @@ export function ProductSelectionPage() {
                     paddingTop: spacing[3],
                     marginTop: spacing[8],
                   }}>
-                    {bhxLoading ? (
-                      <p style={{
-                        fontSize: typography.fontSize.xs,
+                    {bhxLoading || bhxCarPark1.price === null ? (
+                      <div style={{
+                        fontSize: typography.fontSize['2xl'],
+                        fontWeight: typography.fontWeight.extrabold,
                         color: colors.gray[500],
-                        marginBottom: spacing[1],
                       }}>
-                        Loading live prices...
-                      </p>
-                    ) : bhxCarPark1.isLive ? (
-                      <p style={{
-                        fontSize: typography.fontSize.xs,
-                        color: colors.success,
-                        fontWeight: typography.fontWeight.semibold,
-                        marginBottom: spacing[1],
-                      }}>
-                        ✓ Live pricing from Birmingham Airport
-                      </p>
+                        Loading...
+                      </div>
                     ) : (
-                      <p style={{
-                        fontSize: typography.fontSize.xs,
-                        color: colors.gray[500],
-                        marginBottom: spacing[1],
-                      }}>
-                        Using estimated pricing
-                      </p>
+                      <>
+                        {bhxCarPark1.isLive ? (
+                          <p style={{
+                            fontSize: typography.fontSize.xs,
+                            color: colors.success,
+                            fontWeight: typography.fontWeight.semibold,
+                            marginBottom: spacing[1],
+                          }}>
+                            ✓ Live pricing from Birmingham Airport
+                          </p>
+                        ) : (
+                          <p style={{
+                            fontSize: typography.fontSize.xs,
+                            color: colors.gray[500],
+                            marginBottom: spacing[1],
+                          }}>
+                            Using estimated pricing
+                          </p>
+                        )}
+                        <div style={{
+                          fontSize: typography.fontSize['2xl'],
+                          fontWeight: typography.fontWeight.extrabold,
+                          color: colors.error,
+                        }}>
+                          £{bhxCarPark1.price.toFixed(2)}
+                        </div>
+                      </>
                     )}
-                    <div style={{
-                      fontSize: typography.fontSize['2xl'],
-                      fontWeight: typography.fontWeight.extrabold,
-                      color: colors.error,
-                    }}>
-                      £{bhxCarPark1.price.toFixed(2)}
-                    </div>
                   </div>
                 </div>
             </div>
