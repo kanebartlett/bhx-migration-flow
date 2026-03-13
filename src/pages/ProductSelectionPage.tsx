@@ -119,6 +119,7 @@ export function ProductSelectionPage() {
         console.log('All meet & greet products:', response.products.filter(p => p.productType === 'meet-and-greet').length);
         console.log('Airparks meet & greet found:', airparksMeetAndGreet.length);
         console.log('Airparks product names:', airparksMeetAndGreet.map(p => p.name));
+        console.log('Airparks product codes:', airparksMeetAndGreet.map(p => ({ name: p.name, code: p.code })));
         console.log('First product data:', airparksMeetAndGreet[0]);
 
         if (airparksMeetAndGreet.length === 0) {

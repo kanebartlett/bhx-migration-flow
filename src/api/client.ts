@@ -286,6 +286,19 @@ export function getMockMeetAndGreetProduct(): CarParkProduct {
 }
 
 /**
+ * Map API product codes to booking system codes with add-ons
+ */
+function mapProductCode(apiCode: string): string {
+  const codeMap: Record<string, string> = {
+    'HPBHI5': 'HPBHI5',                      // Premium - no add-ons
+    'HPBHI9': 'HPBHI9+B2513+BA2+BC0',        // Electric
+    'HPBHI6': 'HPBHI6+B2505+BA2+BC0',        // Premium Electric
+  };
+
+  return codeMap[apiCode] || apiCode;
+}
+
+/**
  * Generate booking URL from product code and search params
  */
 export function generateBookingURL(
@@ -293,6 +306,9 @@ export function generateBookingURL(
   searchParams: ParkingSearchParams,
   urlParams?: Record<string, string>
 ): string {
+  // Map the product code to include add-ons
+  const mappedCode = mapProductCode(productCode);
+
   // Convert time format HH:MM to HH:MM:SS
   const formatTime = (time: string): string => {
     return `${time}:00`;
@@ -330,5 +346,5 @@ export function generateBookingURL(
     });
   }
 
-  return `https://www.holidayextras.com/static/?selectProduct=cp&#/carpark/${productCode}/payment/detailsConfirm?${params.toString()}`;
+  return `https://www.holidayextras.com/static/?selectProduct=cp&#/carpark/${mappedCode}/payment/detailsConfirm?${params.toString()}`;
 }
