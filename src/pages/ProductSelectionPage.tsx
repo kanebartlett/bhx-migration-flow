@@ -292,6 +292,8 @@ export function ProductSelectionPage() {
                   boxShadow: shadows.lg,
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                   cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
@@ -316,7 +318,12 @@ export function ProductSelectionPage() {
                 )}
 
                 {/* Product Details */}
-                <div style={{ padding: spacing[5] }}>
+                <div style={{
+                  padding: spacing[5],
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flex: 1,
+                }}>
                   <h3 style={{
                     fontSize: typography.fontSize.xl,
                     fontWeight: typography.fontWeight.bold,
@@ -421,6 +428,7 @@ export function ProductSelectionPage() {
                     justifyContent: 'space-between',
                     borderTop: `1px solid ${colors.gray[200]}`,
                     paddingTop: spacing[3],
+                    marginTop: 'auto',
                   }}>
                     <div>
                       <p style={{
@@ -470,6 +478,8 @@ export function ProductSelectionPage() {
               boxShadow: shadows.lg,
               border: `2px solid ${colors.gray[300]}`,
               opacity: 0.8,
+              display: 'flex',
+              flexDirection: 'column',
             }}>
               {/* Not Available Badge */}
               <div style={{
@@ -491,7 +501,12 @@ export function ProductSelectionPage() {
               </div>
 
               {/* Product Details */}
-              <div style={{ padding: spacing[5] }}>
+              <div style={{
+                padding: spacing[5],
+                display: 'flex',
+                flexDirection: 'column',
+                flex: 1,
+              }}>
                   <h3 style={{
                     fontSize: typography.fontSize.xl,
                     fontWeight: typography.fontWeight.bold,
@@ -536,7 +551,7 @@ export function ProductSelectionPage() {
                   <div style={{
                     borderTop: `1px solid ${colors.gray[200]}`,
                     paddingTop: spacing[3],
-                    marginTop: spacing[8],
+                    marginTop: 'auto',
                   }}>
                     {bhxLoading || bhxCarPark1.price === null ? (
                       <div style={{
