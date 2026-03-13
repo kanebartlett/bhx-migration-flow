@@ -219,6 +219,7 @@ export function LandingPage() {
                   showMonthYearPicker={false}
                   showYearDropdown={false}
                   showMonthDropdown={false}
+                  readOnly={true}
                   renderCustomHeader={({
                     date,
                     changeYear,
@@ -349,6 +350,7 @@ export function LandingPage() {
                   showMonthYearPicker={false}
                   showYearDropdown={false}
                   showMonthDropdown={false}
+                  readOnly={true}
                   renderCustomHeader={({
                     date,
                     changeYear,
