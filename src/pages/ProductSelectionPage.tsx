@@ -464,7 +464,7 @@ export function ProductSelectionPage() {
                     listStyle: 'none',
                     padding: 0,
                     margin: 0,
-                    marginTop: spacing[4],
+                    marginTop: spacing[10],
                     marginBottom: spacing[4],
                     fontSize: typography.fontSize.sm,
                   }}>
@@ -490,6 +490,7 @@ export function ProductSelectionPage() {
                   <div style={{
                     borderTop: `1px solid ${colors.gray[200]}`,
                     paddingTop: spacing[3],
+                    marginTop: spacing[8],
                   }}>
                     {bhxLoading ? (
                       <p style={{
