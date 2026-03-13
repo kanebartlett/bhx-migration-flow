@@ -180,13 +180,13 @@ export function LoadingPage() {
             color: colors.white,
             padding: `${spacing[2]} ${spacing[3]}`,
             fontWeight: typography.fontWeight.bold,
-            fontSize: typography.fontSize.sm,
+            fontSize: typography.fontSize.base,
           }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>Feature</div>
             <div style={{ textAlign: 'center' }}>
               <div>Meet & Greet</div>
               <div style={{
-                fontSize: '10px',
+                fontSize: typography.fontSize.xs,
                 fontWeight: typography.fontWeight.semibold,
                 color: colors.secondary,
                 marginTop: '2px',
@@ -197,7 +197,7 @@ export function LoadingPage() {
             <div style={{ textAlign: 'center' }}>
               <div>Car Park 1</div>
               <div style={{
-                fontSize: '10px',
+                fontSize: typography.fontSize.xs,
                 fontWeight: typography.fontWeight.normal,
                 color: colors.gray[300],
                 marginTop: '2px',
@@ -233,7 +233,7 @@ export function LoadingPage() {
                 color: colors.gray[900],
                 display: 'flex',
                 alignItems: 'center',
-                fontSize: typography.fontSize.sm,
+                fontSize: typography.fontSize.base,
               }}>
                 {row.feature}
               </div>
@@ -245,7 +245,7 @@ export function LoadingPage() {
               }}>
                 {row.meetGreetValue ? (
                   <span style={{
-                    fontSize: typography.fontSize.sm,
+                    fontSize: typography.fontSize.base,
                     color: colors.gray[900],
                     fontWeight: typography.fontWeight.semibold,
                   }}>
@@ -253,7 +253,7 @@ export function LoadingPage() {
                   </span>
                 ) : row.meetGreet === true ? (
                   <span style={{
-                    fontSize: typography.fontSize.xl,
+                    fontSize: typography.fontSize['2xl'],
                     color: colors.success,
                     fontWeight: typography.fontWeight.bold,
                   }}>
@@ -269,7 +269,7 @@ export function LoadingPage() {
               }}>
                 {row.carPark1Value ? (
                   <span style={{
-                    fontSize: typography.fontSize.sm,
+                    fontSize: typography.fontSize.base,
                     color: colors.gray[900],
                     fontWeight: typography.fontWeight.semibold,
                   }}>
@@ -277,7 +277,7 @@ export function LoadingPage() {
                   </span>
                 ) : row.carPark1 === true ? (
                   <span style={{
-                    fontSize: typography.fontSize.xl,
+                    fontSize: typography.fontSize['2xl'],
                     color: colors.success,
                     fontWeight: typography.fontWeight.bold,
                   }}>
@@ -285,7 +285,7 @@ export function LoadingPage() {
                   </span>
                 ) : row.carPark1 === false ? (
                   <span style={{
-                    fontSize: typography.fontSize.xl,
+                    fontSize: typography.fontSize['2xl'],
                     color: colors.error,
                     fontWeight: typography.fontWeight.bold,
                   }}>

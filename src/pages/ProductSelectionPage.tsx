@@ -496,34 +496,12 @@ export function ProductSelectionPage() {
                     </div>
                   )}
 
-                  {/* Price */}
-                  <div style={{
-                    marginBottom: spacing[4],
-                    borderTop: `1px solid ${colors.gray[200]}`,
-                    paddingTop: spacing[3],
-                  }}>
-                    <p style={{
-                      fontSize: typography.fontSize.xs,
-                      color: colors.gray[500],
-                      textTransform: 'uppercase',
-                      marginBottom: spacing[1],
-                    }}>
-                      Live Price
-                    </p>
-                    <div style={{
-                      fontSize: typography.fontSize['2xl'],
-                      fontWeight: typography.fontWeight.extrabold,
-                      color: colors.error,
-                    }}>
-                      £{bhxCarPark1.price.toFixed(2)}
-                    </div>
-                  </div>
-
                   {/* Missing Features */}
                   <ul style={{
                     listStyle: 'none',
                     padding: 0,
                     margin: 0,
+                    marginBottom: spacing[4],
                     fontSize: typography.fontSize.sm,
                   }}>
                     <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
@@ -543,6 +521,28 @@ export function ProductSelectionPage() {
                       <span>No EV charging available</span>
                     </li>
                   </ul>
+
+                  {/* Price */}
+                  <div style={{
+                    borderTop: `1px solid ${colors.gray[200]}`,
+                    paddingTop: spacing[3],
+                  }}>
+                    <p style={{
+                      fontSize: typography.fontSize.xs,
+                      color: colors.gray[500],
+                      textTransform: 'uppercase',
+                      marginBottom: spacing[1],
+                    }}>
+                      Live Price
+                    </p>
+                    <div style={{
+                      fontSize: typography.fontSize['2xl'],
+                      fontWeight: typography.fontWeight.extrabold,
+                      color: colors.error,
+                    }}>
+                      £{bhxCarPark1.price.toFixed(2)}
+                    </div>
+                  </div>
                 </div>
             </div>
           </div>
