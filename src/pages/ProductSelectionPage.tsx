@@ -196,7 +196,7 @@ export function ProductSelectionPage() {
             alt="Holiday Extras"
             style={{ height: '60px', width: 'auto' }}
           />
-          <p style={{
+          <p className="header-tagline" style={{
             fontSize: typography.fontSize.base,
             margin: 0,
             fontWeight: typography.fontWeight.normal,
@@ -631,6 +631,12 @@ export function ProductSelectionPage() {
           }
           76%, 100% {
             content: '.';
+          }
+        }
+
+        @media (max-width: 768px) {
+          .header-tagline {
+            display: none !important;
           }
         }
       `}</style>
