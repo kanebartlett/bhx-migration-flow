@@ -458,16 +458,6 @@ export function ProductSelectionPage() {
                     {bhxCarPark1.name}
                   </h3>
 
-                  {bhxLoading && (
-                    <div style={{
-                      fontSize: typography.fontSize.xs,
-                      color: colors.gray[500],
-                      marginBottom: spacing[2],
-                    }}>
-                      Loading live prices...
-                    </div>
-                  )}
-
                   {/* Missing Features */}
                   <ul style={{
                     listStyle: 'none',
@@ -499,7 +489,15 @@ export function ProductSelectionPage() {
                     borderTop: `1px solid ${colors.gray[200]}`,
                     paddingTop: spacing[3],
                   }}>
-                    {bhxCarPark1.isLive && !bhxLoading ? (
+                    {bhxLoading ? (
+                      <p style={{
+                        fontSize: typography.fontSize.xs,
+                        color: colors.gray[500],
+                        marginBottom: spacing[1],
+                      }}>
+                        Loading live prices...
+                      </p>
+                    ) : bhxCarPark1.isLive ? (
                       <p style={{
                         fontSize: typography.fontSize.xs,
                         color: colors.success,
@@ -508,7 +506,7 @@ export function ProductSelectionPage() {
                       }}>
                         ✓ Live pricing from Birmingham Airport
                       </p>
-                    ) : !bhxLoading && !bhxCarPark1.isLive ? (
+                    ) : (
                       <p style={{
                         fontSize: typography.fontSize.xs,
                         color: colors.gray[500],
@@ -516,7 +514,7 @@ export function ProductSelectionPage() {
                       }}>
                         Using estimated pricing
                       </p>
-                    ) : null}
+                    )}
                     <div style={{
                       fontSize: typography.fontSize['2xl'],
                       fontWeight: typography.fontWeight.extrabold,
