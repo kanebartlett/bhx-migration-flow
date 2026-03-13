@@ -130,7 +130,7 @@ export function LoadingPage() {
       }}>
         {/* Loading Message */}
         <h1 style={{
-          fontSize: typography.fontSize['2xl'],
+          fontSize: typography.fontSize['4xl'],
           fontWeight: typography.fontWeight.extrabold,
           color: colors.white,
           marginBottom: spacing[2],
@@ -140,7 +140,7 @@ export function LoadingPage() {
         </h1>
 
         <p style={{
-          fontSize: typography.fontSize.base,
+          fontSize: typography.fontSize.xl,
           color: 'rgba(255, 255, 255, 0.9)',
           marginBottom: spacing[3],
           textAlign: 'center',

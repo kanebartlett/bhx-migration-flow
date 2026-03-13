@@ -508,13 +508,12 @@ export function ProductSelectionPage() {
                       textTransform: 'uppercase',
                       marginBottom: spacing[1],
                     }}>
-                      Previous Price
+                      Live Price
                     </p>
                     <div style={{
                       fontSize: typography.fontSize['2xl'],
                       fontWeight: typography.fontWeight.extrabold,
-                      color: colors.gray[600],
-                      textDecoration: 'line-through',
+                      color: colors.error,
                     }}>
                       £{bhxCarPark1.price.toFixed(2)}
                     </div>
