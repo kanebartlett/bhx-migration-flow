@@ -210,22 +210,11 @@ export function ProductSelectionPage() {
       {/* Main Content */}
       <main style={{
         flex: 1,
-        padding: `${spacing[8]} ${spacing[6]}`,
+        padding: `${spacing[4]} ${spacing[6]}`,
         maxWidth: '1400px',
         width: '100%',
         margin: '0 auto',
       }}>
-        <h1 style={{
-          fontSize: typography.fontSize['4xl'],
-          fontWeight: typography.fontWeight.extrabold,
-          color: colors.primary,
-          marginBottom: spacing[4],
-          textAlign: 'center',
-        }}>
-          Choose Your Premium Parking
-        </h1>
-
-
         {/* Loading State */}
         {loading && (
           <div style={{
