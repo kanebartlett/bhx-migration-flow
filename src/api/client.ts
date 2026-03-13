@@ -293,16 +293,42 @@ export function generateBookingURL(
   searchParams: ParkingSearchParams,
   urlParams?: Record<string, string>
 ): string {
+  // Convert time format HH:MM to HH:MM:SS
+  const formatTime = (time: string): string => {
+    return `${time}:00`;
+  };
+
   const params = new URLSearchParams({
     agent: urlParams?.agent || 'BD047',
+    ppts: '',
+    customer_ref: '',
     lang: 'en',
+    launch_id: urlParams?.launch_id || '',
+    campaign_id: urlParams?.campaign_id || '',
+    adults: '2',
     depart: searchParams.location,
+    terminal: '',
+    arrive: '',
     in: searchParams.arrivalDate,
     out: searchParams.departureDate,
-    park_from: searchParams.arrivalTime,
-    park_to: searchParams.departureTime,
-    ...urlParams,
+    park_from: formatTime(searchParams.arrivalTime),
+    park_to: formatTime(searchParams.departureTime),
+    filter_meetandgreet: '',
+    filter_parkandride: '',
+    children: '0',
+    infants: '0',
+    redirectReferal: 'carpark',
+    from_categories: 'true',
   });
+
+  // Add any additional URL params not already in the list
+  if (urlParams) {
+    Object.entries(urlParams).forEach(([key, value]) => {
+      if (!params.has(key)) {
+        params.set(key, value);
+      }
+    });
+  }
 
   return `https://www.holidayextras.com/static/?selectProduct=cp&#/carpark/${productCode}/payment/detailsConfirm?${params.toString()}`;
 }

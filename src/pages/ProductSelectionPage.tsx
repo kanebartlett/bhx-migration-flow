@@ -399,7 +399,7 @@ export function ProductSelectionPage() {
                     <button
                       onClick={() => handleSelectProduct(product)}
                       style={{
-                        background: colors.secondary,
+                        background: colors.primary,
                         color: colors.white,
                         border: 'none',
                         padding: `${spacing[2]} ${spacing[4]}`,
@@ -409,10 +409,10 @@ export function ProductSelectionPage() {
                         cursor: 'pointer',
                         transition: 'background 0.2s ease',
                       }}
-                      onMouseEnter={(e) => e.currentTarget.style.background = '#d97706'}
-                      onMouseLeave={(e) => e.currentTarget.style.background = colors.secondary}
+                      onMouseEnter={(e) => e.currentTarget.style.background = '#6b3eb8'}
+                      onMouseLeave={(e) => e.currentTarget.style.background = colors.primary}
                     >
-                      Select →
+                      Choose
                     </button>
                   </div>
                 </div>
