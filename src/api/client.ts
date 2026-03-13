@@ -290,9 +290,12 @@ export function getMockMeetAndGreetProduct(): CarParkProduct {
  */
 function mapProductCode(apiCode: string): string {
   const codeMap: Record<string, string> = {
-    'HPBHI5': 'HPBHI5',                      // Premium - no add-ons
-    'HPBHI9': 'HPBHI9+B2513+BA2+BC0',        // Electric
-    'HPBHI6': 'HPBHI6+B2505+BA2+BC0',        // Premium Electric
+    'BHI5': 'HPBHI5',                        // Premium - no add-ons
+    'HPBHI5': 'HPBHI5',                      // Premium - no add-ons (already prefixed)
+    'BHI9': 'HPBHI9+B2513+BA2+BC0',          // Electric
+    'HPBHI9': 'HPBHI9+B2513+BA2+BC0',        // Electric (already prefixed)
+    'BHI6': 'HPBHI6+B2505+BA2+BC0',          // Premium Electric
+    'HPBHI6': 'HPBHI6+B2505+BA2+BC0',        // Premium Electric (already prefixed)
   };
 
   return codeMap[apiCode] || apiCode;
@@ -309,42 +312,34 @@ export function generateBookingURL(
   // Map the product code to include add-ons
   const mappedCode = mapProductCode(productCode);
 
-  // Convert time format HH:MM to HH:MM:SS
-  const formatTime = (time: string): string => {
-    return `${time}:00`;
-  };
-
   const params = new URLSearchParams({
-    agent: urlParams?.agent || 'BD047',
+    agent: urlParams?.agent || 'WEB1',
     ppts: '',
     customer_ref: '',
     lang: 'en',
-    launch_id: urlParams?.launch_id || '',
-    campaign_id: urlParams?.campaign_id || '',
     adults: '2',
     depart: searchParams.location,
     terminal: '',
     arrive: '',
+    flight: 'default',
     in: searchParams.arrivalDate,
     out: searchParams.departureDate,
-    park_from: formatTime(searchParams.arrivalTime),
-    park_to: formatTime(searchParams.departureTime),
+    park_from: searchParams.arrivalTime,
+    park_to: searchParams.departureTime,
     filter_meetandgreet: '',
     filter_parkandride: '',
     children: '0',
     infants: '0',
-    redirectReferal: 'carpark',
-    from_categories: 'true',
   });
 
-  // Add any additional URL params not already in the list
+  // Add any additional URL params not already in the list (but skip empty values)
   if (urlParams) {
     Object.entries(urlParams).forEach(([key, value]) => {
-      if (!params.has(key)) {
+      if (value && !params.has(key)) {
         params.set(key, value);
       }
     });
   }
 
-  return `https://www.holidayextras.com/static/?selectProduct=cp&#/carpark/${mappedCode}/payment/detailsConfirm?${params.toString()}`;
+  return `https://www.holidayextras.com/static/?selectProduct=cp&#/carpark/${mappedCode}/payment/detailsCollect?${params.toString()}`;
 }
