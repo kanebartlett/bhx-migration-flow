@@ -1,0 +1,182 @@
+{
+  "timestamp": "2026-03-06T13:39:11.306Z",
+  "testParams": {
+    "departureDate": "07/03/2026",
+    "departureTime": "12:00",
+    "returnDate": "14/03/2026",
+    "returnTime": "12:00"
+  },
+  "pageAnalysis": {
+    "hasBHI5Code": false,
+    "hasMeetGreetText": true,
+    "hasAirparksText": false,
+    "hasPriceInfo": true,
+    "headings": [
+      "Why Meet & Greet Is Better Than Car Park 1",
+      "Maple Parking Meet and Greet - Larger vehicles",
+      "BHX Car Park 1",
+      "Ready to Save £-136.76 This Week?"
+    ]
+  },
+  "networkActivity": {
+    "totalRequests": 2,
+    "totalResponses": 2,
+    "requests": [
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:39:08.203Z"
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:39:08.203Z"
+      }
+    ],
+    "responses": [
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "status": 200,
+        "containsBHI5": false,
+        "body": {
+          "API_Reply": {
+            "ATTRIBUTES": {
+              "Product": "CarPark",
+              "RequestCode": 1,
+              "Result": "OK",
+              "cached": true,
+              "expires": "2026-03-06 15:39:08"
+            },
+            "CarPark": [
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet - Larger vehicles",
+                "Code": "BHLV",
+                "BookingURL": "/v1/carpark/HPBHLV.js",
+                "MoreInfoURL": "/v1/product/BHLV.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 236.75,
+                "TotalPrice": 236.75,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              }
+            ],
+            "Pricing": {},
+            "SepaID": "",
+            "API_Header": {
+              "Request": {
+                "ABTANumber": "WEB1",
+                "key": "foo",
+                "token": "TOKEN",
+                "ArrivalDate": "2026-03-07",
+                "ArrivalTime": 1200,
+                "DepartDate": "2026-03-15",
+                "DepartTime": 1200,
+                "NumberOfPax": 2,
+                "v": 1,
+                "format": "js"
+              }
+            }
+          }
+        }
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "status": 200,
+        "containsBHI5": false,
+        "body": {
+          "API_Reply": {
+            "ATTRIBUTES": {
+              "Product": "CarPark",
+              "RequestCode": 1,
+              "Result": "OK",
+              "cached": true,
+              "expires": "2026-03-06 15:39:09"
+            },
+            "CarPark": [
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet - Larger vehicles",
+                "Code": "BHLV",
+                "BookingURL": "/v1/carpark/HPBHLV.js",
+                "MoreInfoURL": "/v1/product/BHLV.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 236.75,
+                "TotalPrice": 236.75,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              }
+            ],
+            "Pricing": {},
+            "SepaID": "",
+            "API_Header": {
+              "Request": {
+                "ABTANumber": "WEB1",
+                "key": "foo",
+                "token": "TOKEN",
+                "ArrivalDate": "2026-03-07",
+                "ArrivalTime": 1200,
+                "DepartDate": "2026-03-15",
+                "DepartTime": 1200,
+                "NumberOfPax": 2,
+                "v": 1,
+                "format": "js"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "screenshots": [
+    "screenshots/bhi5-test-landing.png",
+    "screenshots/bhi5-test-form-filled.png",
+    "screenshots/bhi5-test-results.png"
+  ]
+}

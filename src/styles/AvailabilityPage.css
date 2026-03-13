@@ -1,0 +1,80 @@
+/* Availability Page Responsive Styles */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.availability-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* Responsive comparison grid */
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .value-prop {
+    min-width: 80px;
+  }
+
+  .value-prop div:first-child {
+    font-size: 24px !important;
+  }
+}
+
+/* Product cards responsive */
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card.recommended:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(76, 175, 80, 0.2);
+}
+
+/* Button interactions */
+.product-card button:active {
+  transform: scale(0.98);
+}
+
+.product-card button:focus {
+  outline: 3px solid #542E91;
+  outline-offset: 2px;
+}
+
+/* List styles */
+.product-card ul li {
+  transition: background 0.2s ease;
+}
+
+.product-card.recommended ul li:hover {
+  background: rgba(76, 175, 80, 0.05);
+  border-radius: 4px;
+  margin: 0 -8px;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Loading state animation */
+.loading-state {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile optimizations */
+@media (max-width: 576px) {
+  .availability-page section {
+    padding: 32px 16px !important;
+  }
+
+  .product-card {
+    border-radius: 8px;
+  }
+}

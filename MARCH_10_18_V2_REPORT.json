@@ -1,0 +1,1055 @@
+{
+  "timestamp": "2026-03-06T13:46:08.298Z",
+  "testParams": {
+    "departureDate": "10/03/2026",
+    "departureTime": "12:00",
+    "returnDate": "18/03/2026",
+    "returnTime": "12:00"
+  },
+  "formValues": {
+    "departureDateInput": "10/03/2026",
+    "returnDateInput": "18/03/2026"
+  },
+  "pageAnalysis": {
+    "hasBHI5Code": false,
+    "hasMeetGreetText": true,
+    "hasAirparksText": true,
+    "hasPriceInfo": true,
+    "headings": [
+      "Why Meet & Greet Is Better Than Car Park 1",
+      "Airparks Premium Meet and Greet",
+      "BHX Car Park 1",
+      "Ready to Save £-10.01 This Week?"
+    ],
+    "textMatches": [
+      "£0",
+      "£110.00",
+      "£99.99",
+      "£64"
+    ]
+  },
+  "productsFound": [
+    {
+      "code": "BHH8",
+      "name": "Airparks Express",
+      "price": 57.99
+    },
+    {
+      "code": "BHX1",
+      "name": "Airparks Drop and Go with CarCare",
+      "price": 54.99
+    },
+    {
+      "code": "BHW8",
+      "name": "Maple Parking Meet and Greet",
+      "price": 90.49
+    },
+    {
+      "code": "BHL4",
+      "name": "Maple Parking Meet and Greet",
+      "price": 89.13
+    },
+    {
+      "code": "BHLV",
+      "name": "Maple Parking Meet and Greet - Larger vehicles",
+      "price": 144.75
+    },
+    {
+      "code": "BHR5",
+      "name": "Airparks Drop & Go with Electric Charge",
+      "price": 54.99
+    },
+    {
+      "code": "BHI1",
+      "name": "APH Express",
+      "price": 60.99
+    },
+    {
+      "code": "BHR4",
+      "name": "APH Drop and Go",
+      "price": 57.99
+    },
+    {
+      "code": "BHI9",
+      "name": "Airparks Electric Meet and Greet",
+      "price": 80
+    },
+    {
+      "code": "BHI5",
+      "name": "Airparks Premium Meet and Greet",
+      "price": 110
+    },
+    {
+      "code": "BHI6",
+      "name": "Airparks Premium Electric Meet and Greet",
+      "price": 110
+    },
+    {
+      "code": "BHL3",
+      "name": "Holiday Extras Meet and Greet",
+      "price": 90.49
+    },
+    {
+      "code": "BHL5",
+      "name": "Holiday Extras Meet and Greet",
+      "price": 89.13
+    },
+    {
+      "code": "BHH8",
+      "name": "Airparks Express",
+      "price": 57.99
+    },
+    {
+      "code": "BHX1",
+      "name": "Airparks Drop and Go with CarCare",
+      "price": 54.99
+    },
+    {
+      "code": "BHW8",
+      "name": "Maple Parking Meet and Greet",
+      "price": 90.49
+    },
+    {
+      "code": "BHL4",
+      "name": "Maple Parking Meet and Greet",
+      "price": 89.13
+    },
+    {
+      "code": "BHLV",
+      "name": "Maple Parking Meet and Greet - Larger vehicles",
+      "price": 144.75
+    },
+    {
+      "code": "BHR5",
+      "name": "Airparks Drop & Go with Electric Charge",
+      "price": 54.99
+    },
+    {
+      "code": "BHI1",
+      "name": "APH Express",
+      "price": 60.99
+    },
+    {
+      "code": "BHR4",
+      "name": "APH Drop and Go",
+      "price": 57.99
+    },
+    {
+      "code": "BHI9",
+      "name": "Airparks Electric Meet and Greet",
+      "price": 80
+    },
+    {
+      "code": "BHI5",
+      "name": "Airparks Premium Meet and Greet",
+      "price": 110
+    },
+    {
+      "code": "BHI6",
+      "name": "Airparks Premium Electric Meet and Greet",
+      "price": 110
+    },
+    {
+      "code": "BHL3",
+      "name": "Holiday Extras Meet and Greet",
+      "price": 90.49
+    },
+    {
+      "code": "BHL5",
+      "name": "Holiday Extras Meet and Greet",
+      "price": 89.13
+    }
+  ],
+  "networkActivity": {
+    "totalRequests": 29,
+    "totalResponses": 3,
+    "apiCalls": [
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-10&ArrivalTime=1200&DepartDate=2026-03-18&DepartTime=1200&NumberOfPax=2",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:46:03.192Z"
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-10&ArrivalTime=1200&DepartDate=2026-03-18&DepartTime=1200&NumberOfPax=2",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:46:03.192Z"
+      }
+    ],
+    "responses": [
+      {
+        "url": "http://localhost:5173/src/api/client.ts?t=1772804217249",
+        "status": 200,
+        "containsBHI5": false
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-10&ArrivalTime=1200&DepartDate=2026-03-18&DepartTime=1200&NumberOfPax=2",
+        "status": 200,
+        "containsBHI5": true,
+        "fullBody": {
+          "API_Reply": {
+            "ATTRIBUTES": {
+              "Product": "CarPark",
+              "RequestCode": 1,
+              "Result": "OK",
+              "cached": true,
+              "expires": "2026-03-06 15:46:03"
+            },
+            "CarPark": [
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Express",
+                "Code": "BHH8",
+                "BookingURL": "/v1/carpark/HPBHH8.js",
+                "MoreInfoURL": "/v1/product/BHH8.js",
+                "_latitude": 52.447238,
+                "_longitude": -1.725486,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 57.99,
+                "TotalPrice": 57.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Drop and Go with CarCare",
+                "Code": "BHX1",
+                "BookingURL": "/v1/carpark/HPBHX1.js",
+                "MoreInfoURL": "/v1/product/BHX1.js",
+                "_latitude": 52.4722,
+                "_longitude": -1.76808,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 54.99,
+                "TotalPrice": 54.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1,
+                  "car_parked_for_you": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet",
+                "Code": "BHW8",
+                "BookingURL": "/v1/carpark/HPBHW8.js",
+                "MoreInfoURL": "/v1/product/BHW8.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 90.49,
+                "TotalPrice": 90.49,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet",
+                "Code": "BHL4",
+                "BookingURL": "/v1/carpark/HPBHL4.js",
+                "MoreInfoURL": "/v1/product/BHL4.js",
+                "_latitude": 52.451285,
+                "_longitude": -1.731063,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 89.13,
+                "TotalPrice": 89.13,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet - Larger vehicles",
+                "Code": "BHLV",
+                "BookingURL": "/v1/carpark/HPBHLV.js",
+                "MoreInfoURL": "/v1/product/BHLV.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 144.75,
+                "TotalPrice": 144.75,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Drop & Go with Electric Charge",
+                "Code": "BHR5",
+                "BookingURL": "/v1/carpark/HPBHR5.js",
+                "MoreInfoURL": "/v1/product/BHR5.js",
+                "_latitude": 52.4722,
+                "_longitude": -1.76808,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 54.99,
+                "TotalPrice": 54.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1,
+                  "lead_time": 60
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "APH Express",
+                "Code": "BHI1",
+                "BookingURL": "/v1/carpark/HPBHI1.js",
+                "MoreInfoURL": "/v1/product/BHI1.js",
+                "_latitude": 52.44783,
+                "_longitude": -1.7263,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 60.99,
+                "TotalPrice": 60.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "APH Drop and Go",
+                "Code": "BHR4",
+                "BookingURL": "/v1/carpark/HPBHR4.js",
+                "MoreInfoURL": "/v1/product/BHR4.js",
+                "_latitude": 52.472355,
+                "_longitude": -1.768062,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 57.99,
+                "TotalPrice": 57.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1,
+                  "car_parked_for_you": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Electric Meet and Greet",
+                "Code": "BHI9",
+                "BookingURL": "/v1/carpark/HPBHI9.js",
+                "MoreInfoURL": "/v1/product/BHI9.js",
+                "_latitude": 52.4523,
+                "_longitude": -1.73017,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 80,
+                "TotalPrice": 80,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 2160
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Premium Meet and Greet",
+                "Code": "BHI5",
+                "BookingURL": "/v1/carpark/HPBHI5.js",
+                "MoreInfoURL": "/v1/product/BHI5.js",
+                "_latitude": 52.452498,
+                "_longitude": -1.730761,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 110,
+                "TotalPrice": 110,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 2160
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Premium Electric Meet and Greet",
+                "Code": "BHI6",
+                "BookingURL": "/v1/carpark/HPBHI6.js",
+                "MoreInfoURL": "/v1/product/BHI6.js",
+                "_latitude": 52.452498,
+                "_longitude": -1.730761,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 110,
+                "TotalPrice": 110,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 2160
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Holiday Extras Meet and Greet",
+                "Code": "BHL3",
+                "BookingURL": "/v1/carpark/HPBHL3.js",
+                "MoreInfoURL": "/v1/product/BHL3.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 90.49,
+                "TotalPrice": 90.49,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Holiday Extras Meet and Greet",
+                "Code": "BHL5",
+                "BookingURL": "/v1/carpark/HPBHL5.js",
+                "MoreInfoURL": "/v1/product/BHL5.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 89.13,
+                "TotalPrice": 89.13,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              }
+            ],
+            "Pricing": {},
+            "SepaID": "",
+            "API_Header": {
+              "Request": {
+                "ABTANumber": "WEB1",
+                "key": "foo",
+                "token": "TOKEN",
+                "ArrivalDate": "2026-03-10",
+                "ArrivalTime": 1200,
+                "DepartDate": "2026-03-18",
+                "DepartTime": 1200,
+                "NumberOfPax": 2,
+                "v": 1,
+                "format": "js"
+              }
+            }
+          }
+        }
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-10&ArrivalTime=1200&DepartDate=2026-03-18&DepartTime=1200&NumberOfPax=2",
+        "status": 200,
+        "containsBHI5": true,
+        "fullBody": {
+          "API_Reply": {
+            "ATTRIBUTES": {
+              "Product": "CarPark",
+              "RequestCode": 1,
+              "Result": "OK",
+              "cached": true,
+              "expires": "2026-03-06 15:46:04"
+            },
+            "CarPark": [
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Express",
+                "Code": "BHH8",
+                "BookingURL": "/v1/carpark/HPBHH8.js",
+                "MoreInfoURL": "/v1/product/BHH8.js",
+                "_latitude": 52.447238,
+                "_longitude": -1.725486,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 57.99,
+                "TotalPrice": 57.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Drop and Go with CarCare",
+                "Code": "BHX1",
+                "BookingURL": "/v1/carpark/HPBHX1.js",
+                "MoreInfoURL": "/v1/product/BHX1.js",
+                "_latitude": 52.4722,
+                "_longitude": -1.76808,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 54.99,
+                "TotalPrice": 54.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1,
+                  "car_parked_for_you": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet",
+                "Code": "BHW8",
+                "BookingURL": "/v1/carpark/HPBHW8.js",
+                "MoreInfoURL": "/v1/product/BHW8.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 90.49,
+                "TotalPrice": 90.49,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet",
+                "Code": "BHL4",
+                "BookingURL": "/v1/carpark/HPBHL4.js",
+                "MoreInfoURL": "/v1/product/BHL4.js",
+                "_latitude": 52.451285,
+                "_longitude": -1.731063,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 89.13,
+                "TotalPrice": 89.13,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Maple Parking Meet and Greet - Larger vehicles",
+                "Code": "BHLV",
+                "BookingURL": "/v1/carpark/HPBHLV.js",
+                "MoreInfoURL": "/v1/product/BHLV.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 144.75,
+                "TotalPrice": 144.75,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Drop & Go with Electric Charge",
+                "Code": "BHR5",
+                "BookingURL": "/v1/carpark/HPBHR5.js",
+                "MoreInfoURL": "/v1/product/BHR5.js",
+                "_latitude": 52.4722,
+                "_longitude": -1.76808,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 54.99,
+                "TotalPrice": 54.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1,
+                  "lead_time": 60
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "APH Express",
+                "Code": "BHI1",
+                "BookingURL": "/v1/carpark/HPBHI1.js",
+                "MoreInfoURL": "/v1/product/BHI1.js",
+                "_latitude": 52.44783,
+                "_longitude": -1.7263,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 60.99,
+                "TotalPrice": 60.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "APH Drop and Go",
+                "Code": "BHR4",
+                "BookingURL": "/v1/carpark/HPBHR4.js",
+                "MoreInfoURL": "/v1/product/BHR4.js",
+                "_latitude": 52.472355,
+                "_longitude": -1.768062,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 57.99,
+                "TotalPrice": 57.99,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": "0",
+                  "park_and_ride": 1,
+                  "car_parked_for_you": 1
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Electric Meet and Greet",
+                "Code": "BHI9",
+                "BookingURL": "/v1/carpark/HPBHI9.js",
+                "MoreInfoURL": "/v1/product/BHI9.js",
+                "_latitude": 52.4523,
+                "_longitude": -1.73017,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 80,
+                "TotalPrice": 80,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 2160
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Premium Meet and Greet",
+                "Code": "BHI5",
+                "BookingURL": "/v1/carpark/HPBHI5.js",
+                "MoreInfoURL": "/v1/product/BHI5.js",
+                "_latitude": 52.452498,
+                "_longitude": -1.730761,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 110,
+                "TotalPrice": 110,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 2160
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Airparks Premium Electric Meet and Greet",
+                "Code": "BHI6",
+                "BookingURL": "/v1/carpark/HPBHI6.js",
+                "MoreInfoURL": "/v1/product/BHI6.js",
+                "_latitude": 52.452498,
+                "_longitude": -1.730761,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 110,
+                "TotalPrice": 110,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 2160
+                }
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Holiday Extras Meet and Greet",
+                "Code": "BHL3",
+                "BookingURL": "/v1/carpark/HPBHL3.js",
+                "MoreInfoURL": "/v1/product/BHL3.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 90.49,
+                "TotalPrice": 90.49,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              },
+              {
+                "ATTRIBUTES": [],
+                "Name": "Holiday Extras Meet and Greet",
+                "Code": "BHL5",
+                "BookingURL": "/v1/carpark/HPBHL5.js",
+                "MoreInfoURL": "/v1/product/BHL5.js",
+                "_latitude": 52.45229,
+                "_longitude": -1.73018,
+                "RequestFlags": {
+                  "CarColour": 1,
+                  "CarMake": 1,
+                  "CarModel": 1,
+                  "Destination": 1,
+                  "MobileNum": 1,
+                  "OutFlight": 1,
+                  "Registration": 1,
+                  "ReturnFlight": 1
+                },
+                "NonDiscPrice": 89.13,
+                "TotalPrice": 89.13,
+                "GatePrice": "0.00",
+                "CanAmendCantCancel": "",
+                "CancellationFeeExceptions": "",
+                "AmendmentFeeExceptions": "",
+                "Filter": {
+                  "meet_and_greet": 1,
+                  "on_airport": 1,
+                  "car_parked_for_you": 1,
+                  "lead_time": 360
+                },
+                "equivalent_product": "BHW9",
+                "_a_equivalent_product": [
+                  "BHW9"
+                ]
+              }
+            ],
+            "Pricing": {},
+            "SepaID": "",
+            "API_Header": {
+              "Request": {
+                "ABTANumber": "WEB1",
+                "key": "foo",
+                "token": "TOKEN",
+                "ArrivalDate": "2026-03-10",
+                "ArrivalTime": 1200,
+                "DepartDate": "2026-03-18",
+                "DepartTime": 1200,
+                "NumberOfPax": 2,
+                "v": 1,
+                "format": "js"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "screenshots": [
+    "screenshots/march-10-18-v2-landing.png",
+    "screenshots/march-10-18-v2-calendar-open.png",
+    "screenshots/march-10-18-v2-march-2026.png",
+    "screenshots/march-10-18-v2-form-filled.png",
+    "screenshots/march-10-18-v2-results.png"
+  ]
+}

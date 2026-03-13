@@ -1,0 +1,215 @@
+{
+  "timestamp": "2026-03-06T13:44:30.238Z",
+  "testParams": {
+    "departureDate": "10/03/2026",
+    "departureTime": "12:00",
+    "returnDate": "18/03/2026",
+    "returnTime": "12:00"
+  },
+  "pageAnalysis": {
+    "hasBHI5Code": false,
+    "hasMeetGreetText": true,
+    "hasAirparksText": false,
+    "hasPriceInfo": true,
+    "headings": [
+      "Why Meet & Greet Is Better Than Car Park 1",
+      "Maple Parking Meet and Greet - Larger vehicles",
+      "BHX Car Park 1",
+      "Ready to Save £-136.76 This Week?"
+    ],
+    "textMatches": [
+      "£0",
+      "£236.75",
+      "£99.99",
+      "£64"
+    ]
+  },
+  "productsFound": [
+    {
+      "code": "BHLV",
+      "name": "Maple Parking Meet and Greet - Larger vehicles",
+      "price": 236.75
+    },
+    {
+      "code": "BHLV",
+      "name": "Maple Parking Meet and Greet - Larger vehicles",
+      "price": 236.75
+    }
+  ],
+  "networkActivity": {
+    "totalRequests": 29,
+    "totalResponses": 3,
+    "requests": [
+      {
+        "url": "http://localhost:5173/",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.110Z"
+      },
+      {
+        "url": "http://localhost:5173/@vite/client",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.125Z"
+      },
+      {
+        "url": "http://localhost:5173/src/main.tsx?t=1772804217249",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.125Z"
+      },
+      {
+        "url": "http://localhost:5173/@react-refresh",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.132Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.132Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.132Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.132Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.132Z"
+      },
+      {
+        "url": "http://localhost:5173/src/index.css",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.133Z"
+      },
+      {
+        "url": "http://localhost:5173/src/App.tsx?t=1772804217249",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.133Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/vite/dist/client/env.mjs",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.133Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/chunk-K26R2WAA.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.135Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/chunk-7D4SUZUM.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.135Z"
+      },
+      {
+        "url": "http://localhost:5173/src/pages/LandingPage.tsx?t=1772799985461",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.146Z"
+      },
+      {
+        "url": "http://localhost:5173/src/pages/AvailabilityPage.tsx?t=1772804217249",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.146Z"
+      },
+      {
+        "url": "http://localhost:5173/src/styles/brand.ts",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/src/api/client.ts?t=1772804217249",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/src/styles/AvailabilityPage.css",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/src/styles/LandingPage.css?t=1772799985461",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/date-fns.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-datepicker.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/react-datepicker/dist/react-datepicker.css",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.152Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/chunk-CMXGZYG7.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.164Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/chunk-AITBNTAQ.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.164Z"
+      },
+      {
+        "url": "http://localhost:5173/node_modules/.vite/deps/chunk-IURNLYGH.js?v=75ba421f",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.166Z"
+      },
+      {
+        "url": "http://localhost:5173/vite.svg",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:22.459Z"
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:25.135Z"
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:25.135Z"
+      },
+      {
+        "url": "http://localhost:5173/vite.svg",
+        "method": "GET",
+        "timestamp": "2026-03-06T13:44:25.137Z"
+      }
+    ],
+    "responses": [
+      {
+        "url": "http://localhost:5173/src/api/client.ts?t=1772804217249",
+        "status": 200,
+        "containsBHI5": false,
+        "responseBodySample": null
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "status": 200,
+        "containsBHI5": false,
+        "responseBodySample": "{\"API_Reply\":{\"ATTRIBUTES\":{\"Product\":\"CarPark\",\"RequestCode\":1,\"Result\":\"OK\",\"cached\":true,\"expires\":\"2026-03-06 15:44:25\"},\"CarPark\":[{\"ATTRIBUTES\":[],\"Name\":\"Maple Parking Meet and Greet - Larger vehicles\",\"Code\":\"BHLV\",\"BookingURL\":\"/v1/carpark/HPBHLV.js\",\"MoreInfoURL\":\"/v1/product/BHLV.js\",\"_latitude\":52.45229,\"_longitude\":-1.73018,\"RequestFlags\":{\"CarColour\":1,\"CarMake\":1,\"CarModel\":1,\"Destination\":1,\"MobileNum\":1,\"OutFlight\":1,\"Registration\":1,\"ReturnFlight\":1},\"NonDiscPrice\":236.75,\"Tota"
+      },
+      {
+        "url": "https://api.holidayextras.co.uk/v1/carpark/BHX.js?ABTANumber=WEB1&key=foo&token=TOKEN&ArrivalDate=2026-03-07&ArrivalTime=1200&DepartDate=2026-03-15&DepartTime=1200&NumberOfPax=2",
+        "status": 200,
+        "containsBHI5": false,
+        "responseBodySample": "{\"API_Reply\":{\"ATTRIBUTES\":{\"Product\":\"CarPark\",\"RequestCode\":1,\"Result\":\"OK\",\"cached\":true,\"expires\":\"2026-03-06 15:44:26\"},\"CarPark\":[{\"ATTRIBUTES\":[],\"Name\":\"Maple Parking Meet and Greet - Larger vehicles\",\"Code\":\"BHLV\",\"BookingURL\":\"/v1/carpark/HPBHLV.js\",\"MoreInfoURL\":\"/v1/product/BHLV.js\",\"_latitude\":52.45229,\"_longitude\":-1.73018,\"RequestFlags\":{\"CarColour\":1,\"CarMake\":1,\"CarModel\":1,\"Destination\":1,\"MobileNum\":1,\"OutFlight\":1,\"Registration\":1,\"ReturnFlight\":1},\"NonDiscPrice\":236.75,\"Tota"
+      }
+    ]
+  },
+  "screenshots": [
+    "screenshots/march-10-18-landing.png",
+    "screenshots/march-10-18-form-filled.png",
+    "screenshots/march-10-18-results.png"
+  ]
+}
