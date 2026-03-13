@@ -125,21 +125,31 @@ function transformAPIResponse(data: any): CarParkProduct[] {
     ? data.API_Reply.CarPark
     : [data.API_Reply.CarPark];
 
-  return carParks.map((carPark: any) => ({
-    code: carPark.Code || carPark.code || '',
-    name: carPark.Name || carPark.name || '',
-    description: carPark.Description || carPark.description || '',
-    price: parseFloat(carPark.TotalPrice || carPark.total_price || '0'),
-    currency: carPark.Currency || 'GBP',
-    transferTime: carPark.transfer_time || carPark.TransferTime,
-    distance: carPark.Distance || carPark.distance,
-    productType: determineProductType(carPark),
-    // Extract image URLs from API response
-    imageUrl: extractImageUrl(carPark),
-    images: extractImages(carPark),
-    // Additional features based on product type
-    ...extractFeatures(carPark),
-  }));
+  return carParks.map((carPark: any) => {
+    const code = carPark.Code || carPark.code || '';
+    let price = parseFloat(carPark.TotalPrice || carPark.total_price || '0');
+
+    // Add £10 to Electric products (API returns £10 less than actual price)
+    if (code === 'BHI9' || code === 'HPBHI9' || code === 'BHI6' || code === 'HPBHI6') {
+      price += 10;
+    }
+
+    return {
+      code,
+      name: carPark.Name || carPark.name || '',
+      description: carPark.Description || carPark.description || '',
+      price,
+      currency: carPark.Currency || 'GBP',
+      transferTime: carPark.transfer_time || carPark.TransferTime,
+      distance: carPark.Distance || carPark.distance,
+      productType: determineProductType(carPark),
+      // Extract image URLs from API response
+      imageUrl: extractImageUrl(carPark),
+      images: extractImages(carPark),
+      // Additional features based on product type
+      ...extractFeatures(carPark),
+    };
+  });
 }
 
 /**
