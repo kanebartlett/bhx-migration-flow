@@ -19,6 +19,7 @@ export interface CarParkProduct {
   trustPilotRating?: number;
   features?: ProductFeature[];
   productType?: 'meet-and-greet' | 'park-and-ride' | 'on-airport';
+  supplier?: string;
   noOverstayCharges?: boolean;
   onlineCheckin?: boolean;
   carTracking?: boolean;

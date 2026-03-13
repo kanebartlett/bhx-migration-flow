@@ -23,6 +23,8 @@ export const colors = {
     400: '#999999',
     500: '#666666',
     600: '#333333',
+    700: '#2C2C2C',
+    900: '#1A1A1A',
   },
 };
 
@@ -43,7 +45,9 @@ export const typography = {
     '4xl': '40px',
   },
   fontWeight: {
+    normal: 400,
     regular: 400,
+    medium: 500,
     semibold: 600,
     bold: 700,
     extrabold: 800,
@@ -96,6 +100,7 @@ export const shadows = {
   md: '0 4px 12px rgba(0,0,0,0.1)',
   lg: '0 4px 16px rgba(0,0,0,0.12)',
   xl: '0 8px 24px rgba(0,0,0,0.15)',
+  '2xl': '0 12px 32px rgba(0,0,0,0.2)',
 };
 
 export const transitions = {

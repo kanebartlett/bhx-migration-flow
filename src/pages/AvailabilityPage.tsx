@@ -23,8 +23,8 @@ function convertDateFormat(dateStr: string): string {
   return `${day}/${month}/${year}`;
 }
 
-// Fallback image if API doesn't provide one
-const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80';
+// Fallback image if API doesn't provide one (currently unused)
+// const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80';
 
 export function AvailabilityPage() {
   const [searchParams] = useSearchParams();

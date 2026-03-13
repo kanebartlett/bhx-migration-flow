@@ -8,13 +8,18 @@ const TIMEOUT_MS = 3000;
 const IMAGE_CDN_BASE = 'https://d1xcii4rs5n6co.cloudfront.net';
 
 export class HolidayExtrasAPIError extends Error {
+  status?: number;
+  isTimeout?: boolean;
+
   constructor(
     message: string,
-    public status?: number,
-    public isTimeout?: boolean
+    status?: number,
+    isTimeout?: boolean
   ) {
     super(message);
     this.name = 'HolidayExtrasAPIError';
+    this.status = status;
+    this.isTimeout = isTimeout;
   }
 }
 

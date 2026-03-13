@@ -2,36 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { colors, spacing, typography, borderRadius, shadows } from '../styles/brand';
 
-const BENEFITS = [
-  {
-    icon: '🚗',
-    title: 'No Bus Required',
-    old: 'Wait for shuttle bus',
-    new: 'Drive straight to terminal',
-    color: colors.secondary
-  },
-  {
-    icon: '⏱️',
-    title: 'Save Time',
-    old: '10 minutes to terminal',
-    new: '3 minutes to terminal',
-    color: colors.success
-  },
-  {
-    icon: '💰',
-    title: 'Better Value',
-    old: '£99+ for Car Park 1',
-    new: 'From £78 Meet & Greet',
-    color: colors.secondary
-  },
-  {
-    icon: '✨',
-    title: 'Premium Service',
-    old: 'No car cleaning',
-    new: 'Car cleaned while you\'re away',
-    color: colors.primary
-  }
-];
+// Removed animated benefits - now using static comparison table
+// const BENEFITS = [ ... ];
 
 const MAX_WAIT_TIME_MS = 10000; // 10 seconds
 
@@ -39,7 +11,6 @@ export function LoadingPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
-  const [bhxPriceLoaded, setBhxPriceLoaded] = useState(false);
 
   useEffect(() => {
     const startTime = Date.now();
@@ -66,7 +37,6 @@ export function LoadingPage() {
 
           if (response.ok) {
             await response.json();
-            setBhxPriceLoaded(true);
 
             // Navigate immediately if we haven't already
             if (!hasNavigated) {

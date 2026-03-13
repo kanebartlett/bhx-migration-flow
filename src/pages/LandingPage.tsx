@@ -223,10 +223,10 @@ export function LandingPage() {
                     date,
                     changeYear,
                     changeMonth,
-                    decreaseMonth,
-                    increaseMonth,
-                    prevMonthButtonDisabled,
-                    nextMonthButtonDisabled,
+                    decreaseMonth: _decreaseMonth,
+                    increaseMonth: _increaseMonth,
+                    prevMonthButtonDisabled: _prevMonthButtonDisabled,
+                    nextMonthButtonDisabled: _nextMonthButtonDisabled,
                   }) => {
                     const currentDate = new Date();
                     const currentYear = currentDate.getFullYear();
@@ -337,7 +337,7 @@ export function LandingPage() {
                 <DatePicker
                   id="return-date"
                   selected={returnDate}
-                  onChange={(date) => setReturnDate(date)}
+                  onChange={(date: Date | null) => setReturnDate(date)}
                   dateFormat="dd/MM/yyyy"
                   minDate={departureDate || new Date()}
                   required
@@ -353,10 +353,10 @@ export function LandingPage() {
                     date,
                     changeYear,
                     changeMonth,
-                    decreaseMonth,
-                    increaseMonth,
-                    prevMonthButtonDisabled,
-                    nextMonthButtonDisabled,
+                    decreaseMonth: _decreaseMonth,
+                    increaseMonth: _increaseMonth,
+                    prevMonthButtonDisabled: _prevMonthButtonDisabled,
+                    nextMonthButtonDisabled: _nextMonthButtonDisabled,
                   }) => {
                     const currentDate = new Date();
                     const currentYear = currentDate.getFullYear();
