@@ -469,30 +469,9 @@ export function ProductSelectionPage() {
                     <div style={{
                       fontSize: typography.fontSize.xs,
                       color: colors.gray[500],
-                      marginBottom: spacing[3],
+                      marginBottom: spacing[2],
                     }}>
                       Loading live prices...
-                    </div>
-                  )}
-
-                  {bhxCarPark1.isLive && !bhxLoading && (
-                    <div style={{
-                      fontSize: typography.fontSize.xs,
-                      color: colors.success,
-                      fontWeight: typography.fontWeight.semibold,
-                      marginBottom: spacing[3],
-                    }}>
-                      ✓ Live pricing from Birmingham Airport
-                    </div>
-                  )}
-
-                  {!bhxLoading && !bhxCarPark1.isLive && (
-                    <div style={{
-                      fontSize: typography.fontSize.xs,
-                      color: colors.gray[500],
-                      marginBottom: spacing[3],
-                    }}>
-                      Using estimated pricing
                     </div>
                   )}
 
@@ -527,14 +506,24 @@ export function ProductSelectionPage() {
                     borderTop: `1px solid ${colors.gray[200]}`,
                     paddingTop: spacing[3],
                   }}>
-                    <p style={{
-                      fontSize: typography.fontSize.xs,
-                      color: colors.gray[500],
-                      textTransform: 'uppercase',
-                      marginBottom: spacing[1],
-                    }}>
-                      Live Price
-                    </p>
+                    {bhxCarPark1.isLive && !bhxLoading ? (
+                      <p style={{
+                        fontSize: typography.fontSize.xs,
+                        color: colors.success,
+                        fontWeight: typography.fontWeight.semibold,
+                        marginBottom: spacing[1],
+                      }}>
+                        ✓ Live pricing from Birmingham Airport
+                      </p>
+                    ) : !bhxLoading && !bhxCarPark1.isLive ? (
+                      <p style={{
+                        fontSize: typography.fontSize.xs,
+                        color: colors.gray[500],
+                        marginBottom: spacing[1],
+                      }}>
+                        Using estimated pricing
+                      </p>
+                    ) : null}
                     <div style={{
                       fontSize: typography.fontSize['2xl'],
                       fontWeight: typography.fontWeight.extrabold,

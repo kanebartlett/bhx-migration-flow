@@ -233,7 +233,7 @@ export function LoadingPage() {
                 color: colors.gray[900],
                 display: 'flex',
                 alignItems: 'center',
-                fontSize: typography.fontSize.base,
+                fontSize: typography.fontSize.lg,
               }}>
                 {row.feature}
               </div>
@@ -245,7 +245,7 @@ export function LoadingPage() {
               }}>
                 {row.meetGreetValue ? (
                   <span style={{
-                    fontSize: typography.fontSize.base,
+                    fontSize: typography.fontSize.lg,
                     color: colors.gray[900],
                     fontWeight: typography.fontWeight.semibold,
                   }}>
@@ -269,7 +269,7 @@ export function LoadingPage() {
               }}>
                 {row.carPark1Value ? (
                   <span style={{
-                    fontSize: typography.fontSize.base,
+                    fontSize: typography.fontSize.lg,
                     color: colors.gray[900],
                     fontWeight: typography.fontWeight.semibold,
                   }}>
