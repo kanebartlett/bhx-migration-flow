@@ -442,7 +442,7 @@ export function ProductSelectionPage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: `3px solid #ffd412`,
+                border: `6px solid #ffd412`,
               }}>
                 No Longer Available
               </div>
