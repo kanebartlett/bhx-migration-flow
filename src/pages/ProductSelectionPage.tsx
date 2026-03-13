@@ -464,6 +464,7 @@ export function ProductSelectionPage() {
                     listStyle: 'none',
                     padding: 0,
                     margin: 0,
+                    marginTop: spacing[4],
                     marginBottom: spacing[4],
                     fontSize: typography.fontSize.sm,
                   }}>
