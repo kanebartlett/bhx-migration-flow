@@ -559,7 +559,7 @@ export function ProductSelectionPage() {
                         fontWeight: typography.fontWeight.extrabold,
                         color: colors.gray[500],
                       }}>
-                        Loading...
+                        Loading<span className="loading-dots"></span>
                       </div>
                     ) : (
                       <>
@@ -612,6 +612,26 @@ export function ProductSelectionPage() {
       <style>{`
         @keyframes spin {
           to { transform: rotate(360deg); }
+        }
+
+        .loading-dots::after {
+          content: '.';
+          animation: loading-dots 1.5s steps(3, end) infinite;
+        }
+
+        @keyframes loading-dots {
+          0%, 25% {
+            content: '.';
+          }
+          26%, 50% {
+            content: '..';
+          }
+          51%, 75% {
+            content: '...';
+          }
+          76%, 100% {
+            content: '.';
+          }
         }
       `}</style>
     </div>
