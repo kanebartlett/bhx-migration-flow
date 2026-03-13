@@ -254,6 +254,10 @@
   transition: all 0.2s ease;
   box-sizing: border-box;
   caret-color: transparent; /* Hide cursor */
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+  touch-action: manipulation; /* Prevent zoom on double-tap */
 }
 
 .date-input-custom:hover {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
@@ -6,6 +6,20 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { colors, spacing, typography, borderRadius, shadows } from '../styles/brand';
 import type { URLParams } from '../types';
 import '../styles/LandingPage.css';
+
+// Custom input component for DatePicker to prevent keyboard on mobile
+const DateInput = forwardRef<HTMLInputElement, any>(({ value, onClick, placeholder }, ref) => (
+  <input
+    ref={ref}
+    type="text"
+    value={value}
+    onClick={onClick}
+    placeholder={placeholder}
+    className="date-input-custom"
+    readOnly
+    inputMode="none"
+  />
+));
 
 export function LandingPage() {
   const navigate = useNavigate();
@@ -211,7 +225,6 @@ export function LandingPage() {
                   dateFormat="dd/MM/yyyy"
                   minDate={new Date()}
                   required
-                  className="date-input-custom"
                   calendarClassName="custom-calendar"
                   placeholderText="Select departure date"
                   showPopperArrow={false}
@@ -219,7 +232,7 @@ export function LandingPage() {
                   showMonthYearPicker={false}
                   showYearDropdown={false}
                   showMonthDropdown={false}
-                  readOnly={true}
+                  customInput={<DateInput />}
                   renderCustomHeader={({
                     date,
                     changeYear,
@@ -342,7 +355,6 @@ export function LandingPage() {
                   dateFormat="dd/MM/yyyy"
                   minDate={departureDate || new Date()}
                   required
-                  className="date-input-custom"
                   calendarClassName="custom-calendar"
                   placeholderText="Select return date"
                   showPopperArrow={false}
@@ -350,7 +362,7 @@ export function LandingPage() {
                   showMonthYearPicker={false}
                   showYearDropdown={false}
                   showMonthDropdown={false}
-                  readOnly={true}
+                  customInput={<DateInput />}
                   renderCustomHeader={({
                     date,
                     changeYear,
