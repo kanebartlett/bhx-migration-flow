@@ -3,11 +3,12 @@ import cors from 'cors';
 import { scrapeBHXPrices, findCarPark1 } from './bhx-scraper-playwright.js';
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-// Enable CORS for the frontend
+// Enable CORS for the frontend (allow both local dev and production)
 app.use(cors({
-  origin: 'http://localhost:5173' // Vite dev server
+  origin: true, // Allow all origins for simplicity
+  credentials: false
 }));
 
 app.use(express.json());

@@ -7,7 +7,7 @@ import { fetchCarParkAvailability, generateBookingURL } from '../api/client';
 // No longer filtering by specific codes - showing all meet & greet products
 
 // BHX API configuration
-const BHX_API_URL = 'http://localhost:3001/api/bhx-prices';
+const BHX_API_URL = `${import.meta.env.VITE_BHX_API_URL || 'http://localhost:3001'}/api/bhx-prices`;
 
 // Fallback data if BHX API fails
 const OLD_PRODUCT_DATA = {

@@ -31,8 +31,9 @@ export function LoadingPage() {
         const exitTime = searchParams.get('departureTime');
 
         if (entryDate && exitDate) {
+          const API_URL = import.meta.env.VITE_BHX_API_URL || 'http://localhost:3001';
           const response = await fetch(
-            `http://localhost:3001/api/bhx-prices?entryDate=${convertDateFormat(entryDate)}&entryTime=${entryTime || '12:00'}&exitDate=${convertDateFormat(exitDate)}&exitTime=${exitTime || '12:00'}`
+            `${API_URL}/api/bhx-prices?entryDate=${convertDateFormat(entryDate)}&entryTime=${entryTime || '12:00'}&exitDate=${convertDateFormat(exitDate)}&exitTime=${exitTime || '12:00'}`
           );
 
           if (response.ok) {
