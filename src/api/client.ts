@@ -322,8 +322,8 @@ export function generateBookingURL(
     terminal: '',
     arrive: '',
     flight: 'default',
-    in: searchParams.arrivalDate,
-    out: searchParams.departureDate,
+    in: searchParams.departureDate,  // in = inbound/return date
+    out: searchParams.arrivalDate,    // out = outbound/departure date
     park_from: searchParams.arrivalTime,
     park_to: searchParams.departureTime,
     filter_meetandgreet: '',
