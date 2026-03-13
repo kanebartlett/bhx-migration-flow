@@ -343,35 +343,84 @@ export function ProductSelectionPage() {
                     marginBottom: spacing[4],
                     fontSize: typography.fontSize.sm,
                   }}>
-                    {/* Always show these core meet & greet benefits */}
-                    <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>{product.timeToTerminal ? `Just ${product.timeToTerminal} mins walk to terminal` : 'Quick walk to terminal'}</span>
-                    </li>
-                    <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Car cleaned while you're away</span>
-                    </li>
-                    <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>No overstay charges</span>
-                    </li>
-                    <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Online check-in available</span>
-                    </li>
-                    {product.evFacilities && (
-                      <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
-                        <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                        <span>EV charging available</span>
-                      </li>
-                    )}
-                    {product.trustPilotRating && (
-                      <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
-                        <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                        <span>Trustpilot {product.trustPilotRating}/5 rating</span>
-                      </li>
-                    )}
+                    {/* Product-specific bullets based on product code */}
+                    {product.code === 'BHI5' || product.code === 'HPBHI5' ? (
+                      // Premium Meet and Greet
+                      <>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Quick walk to terminal</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>No overstay charges</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>No wait guarantee!</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Fully insured by Airparks</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Gold standard car cleaning</span>
+                        </li>
+                      </>
+                    ) : product.code === 'BHI9' || product.code === 'HPBHI9' ? (
+                      // Electric Meet and Greet
+                      <>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Quick walk to terminal</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>No overstay charges</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Slick, speedy drop off</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Fully insured by Airparks</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Full EV charge included!</span>
+                        </li>
+                      </>
+                    ) : product.code === 'BHI6' || product.code === 'HPBHI6' ? (
+                      // Premium Electric Meet and Greet
+                      <>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Quick walk to terminal</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>No overstay charges</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>No wait guarantee!</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Fully insured by Airparks</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Full EV charge included!</span>
+                        </li>
+                        <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[700] }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Gold standard car cleaning</span>
+                        </li>
+                      </>
+                    ) : null}
                   </ul>
 
                   {/* Price and CTA */}
@@ -472,15 +521,19 @@ export function ProductSelectionPage() {
                   }}>
                     <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
                       <span style={{ color: colors.error, fontWeight: typography.fontWeight.bold }}>✗</span>
-                      <span>No car cleaning included</span>
+                      <span>11 minute walk to terminal</span>
                     </li>
                     <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
                       <span style={{ color: colors.error, fontWeight: typography.fontWeight.bold }}>✗</span>
-                      <span><strong>£64/day overstay charges</strong></span>
+                      <span>£64/day overstay charges</span>
                     </li>
                     <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
                       <span style={{ color: colors.error, fontWeight: typography.fontWeight.bold }}>✗</span>
-                      <span>No online check-in</span>
+                      <span>Search for your own space</span>
+                    </li>
+                    <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
+                      <span style={{ color: colors.error, fontWeight: typography.fontWeight.bold }}>✗</span>
+                      <span>Relies on your own insurance</span>
                     </li>
                     <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
                       <span style={{ color: colors.error, fontWeight: typography.fontWeight.bold }}>✗</span>
