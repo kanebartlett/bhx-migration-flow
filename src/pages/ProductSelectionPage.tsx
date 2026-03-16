@@ -41,7 +41,7 @@ export function ProductSelectionPage() {
   const [selectedProduct, setSelectedProduct] = useState<CarParkProduct | null>(null);
   const [productDetails, setProductDetails] = useState<any>(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
-  const [activeTab, setActiveTab] = useState<'text' | 'images' | 'videos'>('text');
+  const [activeTab, setActiveTab] = useState<'text' | 'images'>('text');
   const modalRef = useRef<HTMLDivElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
 
@@ -897,7 +897,7 @@ export function ProductSelectionPage() {
               display: 'flex',
               borderBottom: `2px solid ${colors.gray[200]}`,
             }}>
-              {(['text', 'images', 'videos'] as const).map((tab) => (
+              {(['text', 'images'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -1313,22 +1313,6 @@ export function ProductSelectionPage() {
                     </>
                   )}
                 </>
-              )}
-
-              {/* Videos Tab */}
-              {activeTab === 'videos' && (
-                <div style={{
-                  textAlign: 'center',
-                  padding: spacing[8],
-                  color: colors.gray[600],
-                }}>
-                  <p style={{
-                    fontSize: typography.fontSize.lg,
-                    margin: 0,
-                  }}>
-                    No videos available for this product.
-                  </p>
-                </div>
               )}
             </div>
           </div>
