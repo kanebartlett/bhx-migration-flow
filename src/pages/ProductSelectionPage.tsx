@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { colors, spacing, typography, borderRadius, shadows } from '../styles/brand';
 import type { CarParkProduct, ParkingSearchParams } from '../types';
@@ -35,6 +35,12 @@ export function ProductSelectionPage() {
     isLive: false,
   });
   const [bhxLoading, setBhxLoading] = useState(true);
+
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<CarParkProduct | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const lastFocusedElement = useRef<HTMLElement | null>(null);
 
   const loadBHXPrices = async (params: ParkingSearchParams) => {
     try {
@@ -112,28 +118,26 @@ export function ProductSelectionPage() {
           return;
         }
 
-        // Filter for Airparks meet & greet products only
-        const airparksMeetAndGreet = response.products.filter(
-          p => p.productType === 'meet-and-greet' &&
-               (p.name.toLowerCase().includes('airparks') || p.supplier?.toLowerCase().includes('airparks'))
+        // Filter for meet & greet products
+        const meetAndGreetProducts = response.products.filter(
+          p => p.productType === 'meet-and-greet'
         );
 
         // Debug logging
         console.log('Total API products:', response.products.length);
-        console.log('All meet & greet products:', response.products.filter(p => p.productType === 'meet-and-greet').length);
-        console.log('Airparks meet & greet found:', airparksMeetAndGreet.length);
-        console.log('Airparks product names:', airparksMeetAndGreet.map(p => p.name));
-        console.log('Airparks product codes:', airparksMeetAndGreet.map(p => ({ name: p.name, code: p.code })));
-        console.log('First product data:', airparksMeetAndGreet[0]);
+        console.log('Meet & greet products found:', meetAndGreetProducts.length);
+        console.log('Meet & greet product names:', meetAndGreetProducts.map(p => p.name));
+        console.log('Meet & greet product codes:', meetAndGreetProducts.map(p => ({ name: p.name, code: p.code })));
+        console.log('First product data:', meetAndGreetProducts[0]);
 
-        if (airparksMeetAndGreet.length === 0) {
-          setError('No Airparks Meet & Greet parking available for these dates. Please try different dates.');
+        if (meetAndGreetProducts.length === 0) {
+          setError('No Meet & Greet parking available for these dates. Please try different dates.');
           setLoading(false);
           return;
         }
 
-        // Take up to 3 Airparks meet & greet products
-        setProducts(airparksMeetAndGreet.slice(0, 3));
+        // Take up to 3 meet & greet products
+        setProducts(meetAndGreetProducts.slice(0, 3));
         setLoading(false);
 
         // Fetch BHX prices for comparison (non-blocking)
@@ -147,6 +151,72 @@ export function ProductSelectionPage() {
 
     loadProducts();
   }, [searchParams]);
+
+  // Modal: Escape key handler
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isModalOpen]);
+
+  // Modal: Body scroll prevention
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
+  // Modal: Focus management
+  useEffect(() => {
+    if (isModalOpen && modalRef.current) {
+      // Move focus to modal
+      modalRef.current.focus();
+    } else if (!isModalOpen && lastFocusedElement.current) {
+      // Return focus to the button that opened the modal
+      lastFocusedElement.current.focus();
+      lastFocusedElement.current = null;
+    }
+  }, [isModalOpen]);
+
+  // Modal: Focus trap for Tab cycling
+  useEffect(() => {
+    if (!isModalOpen || !modalRef.current) return;
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = modalRef.current!.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const focusableArray = Array.from(focusableElements);
+      const firstElement = focusableArray[0];
+      const lastElement = focusableArray[focusableArray.length - 1];
+
+      if (e.shiftKey) {
+        // Shift+Tab: cycling backwards
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        // Tab: cycling forwards
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTab);
+    return () => document.removeEventListener('keydown', handleTab);
+  }, [isModalOpen]);
 
   const handleSelectProduct = (product: CarParkProduct) => {
     // Extract search params for booking URL
@@ -169,6 +239,16 @@ export function ProductSelectionPage() {
     // Generate booking URL and navigate
     const bookingURL = generateBookingURL(product.code, params, urlParams);
     window.location.href = bookingURL;
+  };
+
+  const handleMoreInfo = (product: CarParkProduct, event: React.MouseEvent<HTMLButtonElement>) => {
+    lastFocusedElement.current = event.currentTarget;
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -421,6 +501,30 @@ export function ProductSelectionPage() {
                     ) : null}
                   </ul>
 
+                  {/* More Info Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleMoreInfo(product, e);
+                    }}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: colors.primary,
+                      fontSize: typography.fontSize.sm,
+                      fontWeight: typography.fontWeight.semibold,
+                      cursor: 'pointer',
+                      padding: `${spacing[2]} 0`,
+                      marginBottom: spacing[2],
+                      textDecoration: 'underline',
+                      textAlign: 'left',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#6b3eb8'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = colors.primary}
+                  >
+                    More Info
+                  </button>
+
                   {/* Price and CTA */}
                   <div style={{
                     display: 'flex',
@@ -639,7 +743,350 @@ export function ProductSelectionPage() {
             display: none !important;
           }
         }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
       `}</style>
+
+      {/* Modal */}
+      {isModalOpen && selectedProduct && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: spacing[4],
+          }}
+        >
+          {/* Backdrop */}
+          <div
+            onClick={handleCloseModal}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.6)',
+              animation: 'fadeIn 200ms ease-out',
+            }}
+          />
+
+          {/* Modal Content */}
+          <div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            tabIndex={-1}
+            style={{
+              position: 'relative',
+              background: colors.white,
+              borderRadius: borderRadius.xl,
+              boxShadow: shadows['2xl'],
+              maxWidth: '600px',
+              width: '100%',
+              maxHeight: '85vh',
+              overflow: 'auto',
+              zIndex: 1001,
+              animation: 'scaleIn 200ms ease-out',
+            }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={handleCloseModal}
+              aria-label="Close modal"
+              style={{
+                position: 'absolute',
+                top: spacing[4],
+                right: spacing[4],
+                background: 'transparent',
+                border: 'none',
+                fontSize: typography.fontSize['2xl'],
+                color: colors.gray[500],
+                cursor: 'pointer',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = colors.gray[100]}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+            >
+              ×
+            </button>
+
+            {/* Header */}
+            <div style={{
+              padding: spacing[6],
+              borderBottom: `1px solid ${colors.gray[200]}`,
+            }}>
+              <h2
+                id="modal-title"
+                style={{
+                  fontSize: typography.fontSize['2xl'],
+                  fontWeight: typography.fontWeight.bold,
+                  color: colors.primary,
+                  margin: 0,
+                  paddingRight: spacing[8],
+                }}
+              >
+                {selectedProduct.name}
+              </h2>
+            </div>
+
+            {/* Body */}
+            <div style={{
+              padding: spacing[6],
+            }}>
+              {/* Description */}
+              {selectedProduct.description && (
+                <div style={{
+                  marginBottom: spacing[4],
+                }}>
+                  <p style={{
+                    color: colors.gray[700],
+                    fontSize: typography.fontSize.base,
+                    lineHeight: '1.6',
+                  }}>
+                    {selectedProduct.description}
+                  </p>
+                </div>
+              )}
+
+              {/* Images */}
+              {selectedProduct.images && selectedProduct.images.length > 0 && (
+                <div style={{
+                  marginBottom: spacing[4],
+                }}>
+                  <h3 style={{
+                    fontSize: typography.fontSize.lg,
+                    fontWeight: typography.fontWeight.semibold,
+                    color: colors.gray[900],
+                    marginBottom: spacing[2],
+                  }}>
+                    Photos
+                  </h3>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: selectedProduct.images.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+                    gap: spacing[2],
+                  }}>
+                    {selectedProduct.images.map((img, idx) => (
+                      <img
+                        key={idx}
+                        src={img}
+                        alt={`${selectedProduct.name} ${idx + 1}`}
+                        style={{
+                          width: '100%',
+                          height: '150px',
+                          objectFit: 'cover',
+                          borderRadius: borderRadius.base,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Price */}
+              <div style={{
+                marginBottom: spacing[4],
+                padding: spacing[4],
+                background: colors.gray[50],
+                borderRadius: borderRadius.base,
+              }}>
+                <h3 style={{
+                  fontSize: typography.fontSize.lg,
+                  fontWeight: typography.fontWeight.semibold,
+                  color: colors.gray[900],
+                  marginBottom: spacing[2],
+                }}>
+                  Pricing
+                </h3>
+                <p style={{
+                  fontSize: typography.fontSize['3xl'],
+                  fontWeight: typography.fontWeight.extrabold,
+                  color: colors.primary,
+                  margin: 0,
+                }}>
+                  £{selectedProduct.price.toFixed(2)}
+                </p>
+                <p style={{
+                  fontSize: typography.fontSize.sm,
+                  color: colors.gray[600],
+                  margin: 0,
+                  marginTop: spacing[1],
+                }}>
+                  Total price for your stay
+                </p>
+              </div>
+
+              {/* Transfer Details */}
+              {(selectedProduct.transferTime !== undefined || selectedProduct.distance) && (
+                <div style={{
+                  marginBottom: spacing[4],
+                }}>
+                  <h3 style={{
+                    fontSize: typography.fontSize.lg,
+                    fontWeight: typography.fontWeight.semibold,
+                    color: colors.gray[900],
+                    marginBottom: spacing[2],
+                  }}>
+                    Location Details
+                  </h3>
+                  {selectedProduct.transferTime !== undefined && (
+                    <p style={{
+                      color: colors.gray[700],
+                      fontSize: typography.fontSize.base,
+                      marginBottom: spacing[1],
+                    }}>
+                      <strong>Transfer Time:</strong> {selectedProduct.transferTime === 0 ? 'Meet & Greet at terminal' : `${selectedProduct.transferTime} minutes`}
+                    </p>
+                  )}
+                  {selectedProduct.distance && (
+                    <p style={{
+                      color: colors.gray[700],
+                      fontSize: typography.fontSize.base,
+                      marginBottom: spacing[1],
+                    }}>
+                      <strong>Distance:</strong> {selectedProduct.distance}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* Features */}
+              <div>
+                <h3 style={{
+                  fontSize: typography.fontSize.lg,
+                  fontWeight: typography.fontWeight.semibold,
+                  color: colors.gray[900],
+                  marginBottom: spacing[2],
+                }}>
+                  Features & Benefits
+                </h3>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                }}>
+                  {selectedProduct.noOverstayCharges && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>No overstay charges</span>
+                    </li>
+                  )}
+                  {selectedProduct.onlineCheckin && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>Online check-in available</span>
+                    </li>
+                  )}
+                  {selectedProduct.carTracking && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>Car tracking available</span>
+                    </li>
+                  )}
+                  {selectedProduct.carCleaning && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>Car cleaning service included</span>
+                    </li>
+                  )}
+                  {selectedProduct.evFacilities && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>EV charging facilities</span>
+                    </li>
+                  )}
+                  {selectedProduct.premiumBays && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>Premium parking bays</span>
+                    </li>
+                  )}
+                  {selectedProduct.toiletOnSite && (
+                    <li style={{
+                      padding: `${spacing[1]} 0`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing[2],
+                      color: colors.gray[700],
+                    }}>
+                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                      <span>Toilet facilities on-site</span>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

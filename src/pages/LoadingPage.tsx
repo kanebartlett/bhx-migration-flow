@@ -38,13 +38,7 @@ export function LoadingPage() {
 
           if (response.ok) {
             await response.json();
-
-            // Navigate immediately if we haven't already
-            if (!hasNavigated) {
-              hasNavigated = true;
-              const params = new URLSearchParams(searchParams);
-              navigate(`/products?${params.toString()}`);
-            }
+            // API response cached, but don't navigate yet - wait for timeout
           }
         }
       } catch (error) {
@@ -53,10 +47,10 @@ export function LoadingPage() {
       }
     };
 
-    // Start BHX price fetch
+    // Start BHX price fetch (runs in background, doesn't affect navigation timing)
     fetchBHXPrice();
 
-    // Maximum 8 second timeout
+    // Always wait 10 seconds before navigating
     const maxTimeout = setTimeout(() => {
       if (!hasNavigated) {
         hasNavigated = true;
