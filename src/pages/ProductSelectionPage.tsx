@@ -39,6 +39,7 @@ export function ProductSelectionPage() {
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<CarParkProduct | null>(null);
+  const [activeTab, setActiveTab] = useState<'text' | 'images' | 'videos'>('text');
   const modalRef = useRef<HTMLDivElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
 
@@ -190,6 +191,8 @@ export function ProductSelectionPage() {
   // Modal: Focus management
   useEffect(() => {
     if (isModalOpen && modalRef.current) {
+      // Reset to text tab when modal opens
+      setActiveTab('text');
       // Move focus to modal
       modalRef.current.focus();
     } else if (!isModalOpen && lastFocusedElement.current) {
@@ -875,228 +878,292 @@ export function ProductSelectionPage() {
               </h2>
             </div>
 
+            {/* Tab Navigation */}
+            <div style={{
+              display: 'flex',
+              borderBottom: `2px solid ${colors.gray[200]}`,
+            }}>
+              {(['text', 'images', 'videos'] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  style={{
+                    flex: 1,
+                    padding: `${spacing[3]} ${spacing[4]}`,
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: activeTab === tab ? `3px solid ${colors.primary}` : '3px solid transparent',
+                    color: activeTab === tab ? colors.primary : colors.gray[600],
+                    fontSize: typography.fontSize.base,
+                    fontWeight: activeTab === tab ? typography.fontWeight.bold : typography.fontWeight.normal,
+                    cursor: 'pointer',
+                    textTransform: 'capitalize',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (activeTab !== tab) {
+                      e.currentTarget.style.color = colors.gray[900];
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeTab !== tab) {
+                      e.currentTarget.style.color = colors.gray[600];
+                    }
+                  }}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
             {/* Body */}
             <div style={{
               padding: spacing[6],
             }}>
-              {/* Description */}
-              {selectedProduct.description && (
+              {/* Text Tab */}
+              {activeTab === 'text' && (
+                <>
+                  {/* Description */}
+                  {selectedProduct.description && (
+                    <div style={{
+                      marginBottom: spacing[4],
+                    }}>
+                      <p style={{
+                        color: colors.gray[700],
+                        fontSize: typography.fontSize.base,
+                        lineHeight: '1.6',
+                      }}>
+                        {selectedProduct.description}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Price */}
+                  <div style={{
+                    marginBottom: spacing[4],
+                    padding: spacing[4],
+                    background: colors.gray[50],
+                    borderRadius: borderRadius.base,
+                  }}>
+                    <h3 style={{
+                      fontSize: typography.fontSize.lg,
+                      fontWeight: typography.fontWeight.semibold,
+                      color: colors.gray[900],
+                      marginBottom: spacing[2],
+                    }}>
+                      Pricing
+                    </h3>
+                    <p style={{
+                      fontSize: typography.fontSize['3xl'],
+                      fontWeight: typography.fontWeight.extrabold,
+                      color: colors.primary,
+                      margin: 0,
+                    }}>
+                      £{selectedProduct.price.toFixed(2)}
+                    </p>
+                    <p style={{
+                      fontSize: typography.fontSize.sm,
+                      color: colors.gray[600],
+                      margin: 0,
+                      marginTop: spacing[1],
+                    }}>
+                      Total price for your stay
+                    </p>
+                  </div>
+
+                  {/* Transfer Details */}
+                  {(selectedProduct.transferTime !== undefined || selectedProduct.distance) && (
+                    <div style={{
+                      marginBottom: spacing[4],
+                    }}>
+                      <h3 style={{
+                        fontSize: typography.fontSize.lg,
+                        fontWeight: typography.fontWeight.semibold,
+                        color: colors.gray[900],
+                        marginBottom: spacing[2],
+                      }}>
+                        Location Details
+                      </h3>
+                      {selectedProduct.transferTime !== undefined && (
+                        <p style={{
+                          color: colors.gray[700],
+                          fontSize: typography.fontSize.base,
+                          marginBottom: spacing[1],
+                        }}>
+                          <strong>Transfer Time:</strong> {selectedProduct.transferTime === 0 ? 'Meet & Greet at terminal' : `${selectedProduct.transferTime} minutes`}
+                        </p>
+                      )}
+                      {selectedProduct.distance && (
+                        <p style={{
+                          color: colors.gray[700],
+                          fontSize: typography.fontSize.base,
+                          marginBottom: spacing[1],
+                        }}>
+                          <strong>Distance:</strong> {selectedProduct.distance}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Features */}
+                  <div>
+                    <h3 style={{
+                      fontSize: typography.fontSize.lg,
+                      fontWeight: typography.fontWeight.semibold,
+                      color: colors.gray[900],
+                      marginBottom: spacing[2],
+                    }}>
+                      Features & Benefits
+                    </h3>
+                    <ul style={{
+                      listStyle: 'none',
+                      padding: 0,
+                      margin: 0,
+                    }}>
+                      {selectedProduct.noOverstayCharges && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>No overstay charges</span>
+                        </li>
+                      )}
+                      {selectedProduct.onlineCheckin && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Online check-in available</span>
+                        </li>
+                      )}
+                      {selectedProduct.carTracking && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Car tracking available</span>
+                        </li>
+                      )}
+                      {selectedProduct.carCleaning && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Car cleaning service included</span>
+                        </li>
+                      )}
+                      {selectedProduct.evFacilities && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>EV charging facilities</span>
+                        </li>
+                      )}
+                      {selectedProduct.premiumBays && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Premium parking bays</span>
+                        </li>
+                      )}
+                      {selectedProduct.toiletOnSite && (
+                        <li style={{
+                          padding: `${spacing[1]} 0`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: spacing[2],
+                          color: colors.gray[700],
+                        }}>
+                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                          <span>Toilet facilities on-site</span>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </>
+              )}
+
+              {/* Images Tab */}
+              {activeTab === 'images' && (
+                <>
+                  {selectedProduct.images && selectedProduct.images.length > 0 ? (
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: selectedProduct.images.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+                      gap: spacing[3],
+                    }}>
+                      {selectedProduct.images.map((img, idx) => (
+                        <img
+                          key={idx}
+                          src={img}
+                          alt={`${selectedProduct.name} ${idx + 1}`}
+                          style={{
+                            width: '100%',
+                            height: '200px',
+                            objectFit: 'cover',
+                            borderRadius: borderRadius.base,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{
+                      textAlign: 'center',
+                      padding: spacing[8],
+                      color: colors.gray[600],
+                    }}>
+                      <p style={{
+                        fontSize: typography.fontSize.lg,
+                        margin: 0,
+                      }}>
+                        No images available for this product.
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {/* Videos Tab */}
+              {activeTab === 'videos' && (
                 <div style={{
-                  marginBottom: spacing[4],
+                  textAlign: 'center',
+                  padding: spacing[8],
+                  color: colors.gray[600],
                 }}>
                   <p style={{
-                    color: colors.gray[700],
-                    fontSize: typography.fontSize.base,
-                    lineHeight: '1.6',
+                    fontSize: typography.fontSize.lg,
+                    margin: 0,
                   }}>
-                    {selectedProduct.description}
+                    No videos available for this product.
                   </p>
                 </div>
               )}
-
-              {/* Images */}
-              {selectedProduct.images && selectedProduct.images.length > 0 && (
-                <div style={{
-                  marginBottom: spacing[4],
-                }}>
-                  <h3 style={{
-                    fontSize: typography.fontSize.lg,
-                    fontWeight: typography.fontWeight.semibold,
-                    color: colors.gray[900],
-                    marginBottom: spacing[2],
-                  }}>
-                    Photos
-                  </h3>
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: selectedProduct.images.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: spacing[2],
-                  }}>
-                    {selectedProduct.images.map((img, idx) => (
-                      <img
-                        key={idx}
-                        src={img}
-                        alt={`${selectedProduct.name} ${idx + 1}`}
-                        style={{
-                          width: '100%',
-                          height: '150px',
-                          objectFit: 'cover',
-                          borderRadius: borderRadius.base,
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Price */}
-              <div style={{
-                marginBottom: spacing[4],
-                padding: spacing[4],
-                background: colors.gray[50],
-                borderRadius: borderRadius.base,
-              }}>
-                <h3 style={{
-                  fontSize: typography.fontSize.lg,
-                  fontWeight: typography.fontWeight.semibold,
-                  color: colors.gray[900],
-                  marginBottom: spacing[2],
-                }}>
-                  Pricing
-                </h3>
-                <p style={{
-                  fontSize: typography.fontSize['3xl'],
-                  fontWeight: typography.fontWeight.extrabold,
-                  color: colors.primary,
-                  margin: 0,
-                }}>
-                  £{selectedProduct.price.toFixed(2)}
-                </p>
-                <p style={{
-                  fontSize: typography.fontSize.sm,
-                  color: colors.gray[600],
-                  margin: 0,
-                  marginTop: spacing[1],
-                }}>
-                  Total price for your stay
-                </p>
-              </div>
-
-              {/* Transfer Details */}
-              {(selectedProduct.transferTime !== undefined || selectedProduct.distance) && (
-                <div style={{
-                  marginBottom: spacing[4],
-                }}>
-                  <h3 style={{
-                    fontSize: typography.fontSize.lg,
-                    fontWeight: typography.fontWeight.semibold,
-                    color: colors.gray[900],
-                    marginBottom: spacing[2],
-                  }}>
-                    Location Details
-                  </h3>
-                  {selectedProduct.transferTime !== undefined && (
-                    <p style={{
-                      color: colors.gray[700],
-                      fontSize: typography.fontSize.base,
-                      marginBottom: spacing[1],
-                    }}>
-                      <strong>Transfer Time:</strong> {selectedProduct.transferTime === 0 ? 'Meet & Greet at terminal' : `${selectedProduct.transferTime} minutes`}
-                    </p>
-                  )}
-                  {selectedProduct.distance && (
-                    <p style={{
-                      color: colors.gray[700],
-                      fontSize: typography.fontSize.base,
-                      marginBottom: spacing[1],
-                    }}>
-                      <strong>Distance:</strong> {selectedProduct.distance}
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {/* Features */}
-              <div>
-                <h3 style={{
-                  fontSize: typography.fontSize.lg,
-                  fontWeight: typography.fontWeight.semibold,
-                  color: colors.gray[900],
-                  marginBottom: spacing[2],
-                }}>
-                  Features & Benefits
-                </h3>
-                <ul style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                }}>
-                  {selectedProduct.noOverstayCharges && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>No overstay charges</span>
-                    </li>
-                  )}
-                  {selectedProduct.onlineCheckin && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Online check-in available</span>
-                    </li>
-                  )}
-                  {selectedProduct.carTracking && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Car tracking available</span>
-                    </li>
-                  )}
-                  {selectedProduct.carCleaning && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Car cleaning service included</span>
-                    </li>
-                  )}
-                  {selectedProduct.evFacilities && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>EV charging facilities</span>
-                    </li>
-                  )}
-                  {selectedProduct.premiumBays && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Premium parking bays</span>
-                    </li>
-                  )}
-                  {selectedProduct.toiletOnSite && (
-                    <li style={{
-                      padding: `${spacing[1]} 0`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing[2],
-                      color: colors.gray[700],
-                    }}>
-                      <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                      <span>Toilet facilities on-site</span>
-                    </li>
-                  )}
-                </ul>
-              </div>
             </div>
           </div>
         </div>
