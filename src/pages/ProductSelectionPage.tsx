@@ -118,26 +118,40 @@ export function ProductSelectionPage() {
           return;
         }
 
-        // Filter for meet & greet products
+        // Filter for Airparks meet & greet products first
+        const airparksMeetAndGreet = response.products.filter(
+          p => p.productType === 'meet-and-greet' &&
+               (p.name.toLowerCase().includes('airparks') || p.supplier?.toLowerCase().includes('airparks'))
+        );
+
+        // If no Airparks products, fall back to all meet & greet products
         const meetAndGreetProducts = response.products.filter(
           p => p.productType === 'meet-and-greet'
         );
 
         // Debug logging
         console.log('Total API products:', response.products.length);
-        console.log('Meet & greet products found:', meetAndGreetProducts.length);
-        console.log('Meet & greet product names:', meetAndGreetProducts.map(p => p.name));
-        console.log('Meet & greet product codes:', meetAndGreetProducts.map(p => ({ name: p.name, code: p.code })));
-        console.log('First product data:', meetAndGreetProducts[0]);
+        console.log('All meet & greet products:', meetAndGreetProducts.length);
+        console.log('Airparks meet & greet found:', airparksMeetAndGreet.length);
+        console.log('Product names:', meetAndGreetProducts.map(p => p.name));
+        console.log('Product codes:', meetAndGreetProducts.map(p => ({ name: p.name, code: p.code })));
 
-        if (meetAndGreetProducts.length === 0) {
+        // Prioritize Airparks products, fall back to any meet & greet if none available
+        const productsToShow = airparksMeetAndGreet.length > 0
+          ? airparksMeetAndGreet
+          : meetAndGreetProducts;
+
+        if (productsToShow.length === 0) {
           setError('No Meet & Greet parking available for these dates. Please try different dates.');
           setLoading(false);
           return;
         }
 
-        // Take up to 3 meet & greet products
-        setProducts(meetAndGreetProducts.slice(0, 3));
+        console.log('Showing products:', productsToShow.length > 0 && airparksMeetAndGreet.length > 0 ? 'Airparks only' : 'All meet & greet');
+        console.log('First product data:', productsToShow[0]);
+
+        // Take up to 3 products
+        setProducts(productsToShow.slice(0, 3));
         setLoading(false);
 
         // Fetch BHX prices for comparison (non-blocking)
