@@ -185,7 +185,7 @@ export function LandingPage() {
           maxWidth: '900px',
           margin: '0 auto',
           background: colors.white,
-          padding: spacing[8],
+          padding: `${spacing[5]} ${spacing[8]} ${spacing[8]}`,
           borderRadius: borderRadius.lg,
           boxShadow: shadows.lg,
         }}>
