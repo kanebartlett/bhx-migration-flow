@@ -192,7 +192,7 @@ export function LandingPage() {
           <h3 style={{
             fontSize: typography.fontSize['2xl'],
             fontWeight: typography.fontWeight.bold,
-            marginBottom: spacing[6],
+            marginBottom: spacing[4],
             textAlign: 'center',
             color: colors.primary,
           }}>
