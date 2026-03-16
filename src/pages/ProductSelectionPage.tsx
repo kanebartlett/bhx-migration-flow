@@ -658,7 +658,7 @@ export function ProductSelectionPage() {
                     margin: 0,
                     marginTop: spacing[10],
                     marginBottom: spacing[4],
-                    fontSize: typography.fontSize.sm,
+                    fontSize: typography.fontSize.base,
                   }}>
                     <li style={{ padding: `${spacing[1]} 0`, display: 'flex', alignItems: 'center', gap: spacing[2], color: colors.gray[500] }}>
                       <span style={{ color: colors.error, fontWeight: typography.fontWeight.bold }}>✗</span>
