@@ -450,7 +450,7 @@ export function ProductSelectionPage() {
                     padding: 0,
                     margin: 0,
                     marginBottom: spacing[4],
-                    fontSize: typography.fontSize.sm,
+                    fontSize: typography.fontSize.base,
                   }}>
                     {/* Product-specific bullets based on product code */}
                     {product.code === 'BHI5' || product.code === 'HPBHI5' ? (
