@@ -271,6 +271,43 @@ export function filterMeetAndGreetProducts(products: CarParkProduct[]): CarParkP
 }
 
 /**
+ * Fetch detailed product information from MoreInfo endpoint
+ */
+export async function fetchProductDetails(productCode: string): Promise<any> {
+  try {
+    const queryParams = new URLSearchParams({
+      ABTANumber: ABTA_NUMBER,
+      key: API_KEY,
+      token: API_TOKEN,
+    });
+
+    const url = `${API_BASE_URL}/product/${productCode}.js?${queryParams.toString()}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch product details: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data?.API_Reply?.Product && Array.isArray(data.API_Reply.Product)) {
+      return data.API_Reply.Product[0];
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error fetching product details:', error);
+    return null;
+  }
+}
+
+/**
  * Mock data for development/testing
  */
 export function getMockMeetAndGreetProduct(): CarParkProduct {

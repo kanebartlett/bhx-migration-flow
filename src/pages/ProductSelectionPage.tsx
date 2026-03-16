@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { colors, spacing, typography, borderRadius, shadows } from '../styles/brand';
 import type { CarParkProduct, ParkingSearchParams } from '../types';
-import { fetchCarParkAvailability, generateBookingURL } from '../api/client';
+import { fetchCarParkAvailability, generateBookingURL, fetchProductDetails } from '../api/client';
 
 // No longer filtering by specific codes - showing all meet & greet products
 
@@ -39,6 +39,8 @@ export function ProductSelectionPage() {
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<CarParkProduct | null>(null);
+  const [productDetails, setProductDetails] = useState<any>(null);
+  const [loadingDetails, setLoadingDetails] = useState(false);
   const [activeTab, setActiveTab] = useState<'text' | 'images' | 'videos'>('text');
   const modalRef = useRef<HTMLDivElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
@@ -258,10 +260,22 @@ export function ProductSelectionPage() {
     window.location.href = bookingURL;
   };
 
-  const handleMoreInfo = (product: CarParkProduct, event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMoreInfo = async (product: CarParkProduct, event: React.MouseEvent<HTMLButtonElement>) => {
     lastFocusedElement.current = event.currentTarget;
     setSelectedProduct(product);
     setIsModalOpen(true);
+    setLoadingDetails(true);
+    setProductDetails(null);
+
+    // Fetch detailed product information
+    try {
+      const details = await fetchProductDetails(product.code);
+      setProductDetails(details);
+    } catch (error) {
+      console.error('Failed to fetch product details:', error);
+    } finally {
+      setLoadingDetails(false);
+    }
   };
 
   const handleCloseModal = () => {
@@ -923,26 +937,57 @@ export function ProductSelectionPage() {
               {/* Text Tab */}
               {activeTab === 'text' && (
                 <>
-                  {/* Description */}
-                  <div style={{
-                    marginBottom: spacing[4],
-                  }}>
-                    <p style={{
-                      color: colors.gray[700],
-                      fontSize: typography.fontSize.base,
-                      lineHeight: '1.6',
+                  {/* Loading State */}
+                  {loadingDetails && (
+                    <div style={{
+                      textAlign: 'center',
+                      padding: spacing[8],
+                      color: colors.gray[600],
                     }}>
-                      {selectedProduct.code === 'BHI5' || selectedProduct.code === 'HPBHI5' ? (
-                        'Experience premium meet and greet parking at Birmingham Airport with our gold standard service. Drive straight to the terminal, hand your keys to our professional team, and walk to check-in while we park your car securely. Includes complimentary gold standard car cleaning service.'
-                      ) : selectedProduct.code === 'BHI9' || selectedProduct.code === 'HPBHI9' ? (
-                        'Eco-friendly meet and greet parking designed for electric vehicles. Drive to the terminal, hand over your keys, and your EV will be fully charged and ready for your return. Fast drop-off with no waiting around.'
-                      ) : selectedProduct.code === 'BHI6' || selectedProduct.code === 'HPBHI6' ? (
-                        'The ultimate premium service combining electric vehicle charging with gold standard care. Meet our team at the terminal for a seamless handover, enjoy your trip knowing your EV is charging and receiving premium care including gold standard cleaning.'
-                      ) : (
-                        selectedProduct.description || 'Premium meet and greet parking service at Birmingham Airport.'
+                      <p>Loading product details...</p>
+                    </div>
+                  )}
+
+                  {/* Description from API */}
+                  {!loadingDetails && productDetails?.tripappintroduction && (
+                    <div
+                      style={{
+                        marginBottom: spacing[4],
+                        color: colors.gray[700],
+                        fontSize: typography.fontSize.base,
+                        lineHeight: '1.6',
+                      }}
+                      dangerouslySetInnerHTML={{ __html: productDetails.tripappintroduction }}
+                    />
+                  )}
+
+                  {/* Fallback if no API data */}
+                  {!loadingDetails && !productDetails?.tripappintroduction && (
+                    <div style={{
+                      marginBottom: spacing[4],
+                    }}>
+                      {productDetails?.tripappcarparksellpoint && (
+                        <p style={{
+                          color: colors.gray[700],
+                          fontSize: typography.fontSize.base,
+                          lineHeight: '1.6',
+                          marginBottom: spacing[3],
+                        }}>
+                          {productDetails.tripappcarparksellpoint}
+                        </p>
                       )}
-                    </p>
-                  </div>
+                      {productDetails?.tripapptransfertip && (
+                        <p style={{
+                          color: colors.gray[700],
+                          fontSize: typography.fontSize.sm,
+                          lineHeight: '1.6',
+                          fontStyle: 'italic',
+                        }}>
+                          {productDetails.tripapptransfertip}
+                        </p>
+                      )}
+                    </div>
+                  )}
 
                   {/* Price */}
                   <div style={{
@@ -1201,39 +1246,71 @@ export function ProductSelectionPage() {
               {/* Images Tab */}
               {activeTab === 'images' && (
                 <>
-                  {selectedProduct.images && selectedProduct.images.length > 0 ? (
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: selectedProduct.images.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
-                      gap: spacing[3],
-                    }}>
-                      {selectedProduct.images.map((img, idx) => (
-                        <img
-                          key={idx}
-                          src={img}
-                          alt={`${selectedProduct.name} ${idx + 1}`}
-                          style={{
-                            width: '100%',
-                            height: '200px',
-                            objectFit: 'cover',
-                            borderRadius: borderRadius.base,
-                          }}
-                        />
-                      ))}
-                    </div>
-                  ) : (
+                  {loadingDetails ? (
                     <div style={{
                       textAlign: 'center',
                       padding: spacing[8],
                       color: colors.gray[600],
                     }}>
-                      <p style={{
-                        fontSize: typography.fontSize.lg,
-                        margin: 0,
-                      }}>
-                        No images available for this product.
-                      </p>
+                      <p>Loading images...</p>
                     </div>
+                  ) : (
+                    <>
+                      {/* Use API images if available, fallback to basic images */}
+                      {(() => {
+                        const IMAGE_CDN_BASE = 'https://d1xcii4rs5n6co.cloudfront.net';
+                        let imagesToDisplay: string[] = [];
+
+                        if (productDetails?.tripappimages) {
+                          // Parse semicolon-separated images from API
+                          imagesToDisplay = productDetails.tripappimages
+                            .split(';')
+                            .filter((img: string) => img.trim())
+                            .map((img: string) => {
+                              const cleanPath = img.trim().startsWith('/') ? img.trim() : `/${img.trim()}`;
+                              return cleanPath.replace('/imageLibrary/Images/', '/libraryimages/');
+                            })
+                            .map((path: string) => `${IMAGE_CDN_BASE}${path}`);
+                        } else if (selectedProduct.images && selectedProduct.images.length > 0) {
+                          imagesToDisplay = selectedProduct.images;
+                        }
+
+                        return imagesToDisplay.length > 0 ? (
+                          <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: imagesToDisplay.length === 1 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+                            gap: spacing[3],
+                          }}>
+                            {imagesToDisplay.map((img, idx) => (
+                              <img
+                                key={idx}
+                                src={img}
+                                alt={`${selectedProduct.name} ${idx + 1}`}
+                                style={{
+                                  width: '100%',
+                                  height: '200px',
+                                  objectFit: 'cover',
+                                  borderRadius: borderRadius.base,
+                                }}
+                              />
+                            ))}
+                          </div>
+                        ) : (
+                          <div style={{
+                            textAlign: 'center',
+                            padding: spacing[8],
+                            color: colors.gray[600],
+                          }}>
+                            <p style={{
+                              fontSize: typography.fontSize.lg,
+                              margin: 0,
+                            }}>
+                              No images available for this product.
+                            </p>
+                          </div>
+                        );
+                      })()}
+                    </>
                   )}
                 </>
               )}
