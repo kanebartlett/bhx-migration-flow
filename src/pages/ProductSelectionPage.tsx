@@ -924,19 +924,25 @@ export function ProductSelectionPage() {
               {activeTab === 'text' && (
                 <>
                   {/* Description */}
-                  {selectedProduct.description && (
-                    <div style={{
-                      marginBottom: spacing[4],
+                  <div style={{
+                    marginBottom: spacing[4],
+                  }}>
+                    <p style={{
+                      color: colors.gray[700],
+                      fontSize: typography.fontSize.base,
+                      lineHeight: '1.6',
                     }}>
-                      <p style={{
-                        color: colors.gray[700],
-                        fontSize: typography.fontSize.base,
-                        lineHeight: '1.6',
-                      }}>
-                        {selectedProduct.description}
-                      </p>
-                    </div>
-                  )}
+                      {selectedProduct.code === 'BHI5' || selectedProduct.code === 'HPBHI5' ? (
+                        'Experience premium meet and greet parking at Birmingham Airport with our gold standard service. Drive straight to the terminal, hand your keys to our professional team, and walk to check-in while we park your car securely. Includes complimentary gold standard car cleaning service.'
+                      ) : selectedProduct.code === 'BHI9' || selectedProduct.code === 'HPBHI9' ? (
+                        'Eco-friendly meet and greet parking designed for electric vehicles. Drive to the terminal, hand over your keys, and your EV will be fully charged and ready for your return. Fast drop-off with no waiting around.'
+                      ) : selectedProduct.code === 'BHI6' || selectedProduct.code === 'HPBHI6' ? (
+                        'The ultimate premium service combining electric vehicle charging with gold standard care. Meet our team at the terminal for a seamless handover, enjoy your trip knowing your EV is charging and receiving premium care including gold standard cleaning.'
+                      ) : (
+                        selectedProduct.description || 'Premium meet and greet parking service at Birmingham Airport.'
+                      )}
+                    </p>
+                  </div>
 
                   {/* Price */}
                   <div style={{
@@ -972,38 +978,32 @@ export function ProductSelectionPage() {
                   </div>
 
                   {/* Transfer Details */}
-                  {(selectedProduct.transferTime !== undefined || selectedProduct.distance) && (
-                    <div style={{
-                      marginBottom: spacing[4],
+                  <div style={{
+                    marginBottom: spacing[4],
+                  }}>
+                    <h3 style={{
+                      fontSize: typography.fontSize.lg,
+                      fontWeight: typography.fontWeight.semibold,
+                      color: colors.gray[900],
+                      marginBottom: spacing[2],
                     }}>
-                      <h3 style={{
-                        fontSize: typography.fontSize.lg,
-                        fontWeight: typography.fontWeight.semibold,
-                        color: colors.gray[900],
-                        marginBottom: spacing[2],
-                      }}>
-                        Location Details
-                      </h3>
-                      {selectedProduct.transferTime !== undefined && (
-                        <p style={{
-                          color: colors.gray[700],
-                          fontSize: typography.fontSize.base,
-                          marginBottom: spacing[1],
-                        }}>
-                          <strong>Transfer Time:</strong> {selectedProduct.transferTime === 0 ? 'Meet & Greet at terminal' : `${selectedProduct.transferTime} minutes`}
-                        </p>
-                      )}
-                      {selectedProduct.distance && (
-                        <p style={{
-                          color: colors.gray[700],
-                          fontSize: typography.fontSize.base,
-                          marginBottom: spacing[1],
-                        }}>
-                          <strong>Distance:</strong> {selectedProduct.distance}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                      Location Details
+                    </h3>
+                    <p style={{
+                      color: colors.gray[700],
+                      fontSize: typography.fontSize.base,
+                      marginBottom: spacing[1],
+                    }}>
+                      <strong>Service Type:</strong> Meet & Greet at terminal
+                    </p>
+                    <p style={{
+                      color: colors.gray[700],
+                      fontSize: typography.fontSize.base,
+                      marginBottom: spacing[1],
+                    }}>
+                      <strong>Walking Time:</strong> 7 minutes to check-in
+                    </p>
+                  </div>
 
                   {/* Features */}
                   <div>
@@ -1020,90 +1020,179 @@ export function ProductSelectionPage() {
                       padding: 0,
                       margin: 0,
                     }}>
-                      {selectedProduct.noOverstayCharges && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>No overstay charges</span>
-                        </li>
-                      )}
-                      {selectedProduct.onlineCheckin && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>Online check-in available</span>
-                        </li>
-                      )}
-                      {selectedProduct.carTracking && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>Car tracking available</span>
-                        </li>
-                      )}
-                      {selectedProduct.carCleaning && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>Car cleaning service included</span>
-                        </li>
-                      )}
-                      {selectedProduct.evFacilities && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>EV charging facilities</span>
-                        </li>
-                      )}
-                      {selectedProduct.premiumBays && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>Premium parking bays</span>
-                        </li>
-                      )}
-                      {selectedProduct.toiletOnSite && (
-                        <li style={{
-                          padding: `${spacing[1]} 0`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: spacing[2],
-                          color: colors.gray[700],
-                        }}>
-                          <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
-                          <span>Toilet facilities on-site</span>
-                        </li>
-                      )}
+                      {selectedProduct.code === 'BHI5' || selectedProduct.code === 'HPBHI5' ? (
+                        // Premium Meet and Greet
+                        <>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Quick walk to terminal</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>No overstay charges</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>No wait guarantee!</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Fully insured by Airparks</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Gold standard car cleaning</span>
+                          </li>
+                        </>
+                      ) : selectedProduct.code === 'BHI9' || selectedProduct.code === 'HPBHI9' ? (
+                        // Electric Meet and Greet
+                        <>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Quick walk to terminal</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>No overstay charges</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Slick, speedy drop off</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Fully insured by Airparks</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Full EV charge included!</span>
+                          </li>
+                        </>
+                      ) : selectedProduct.code === 'BHI6' || selectedProduct.code === 'HPBHI6' ? (
+                        // Premium Electric Meet and Greet
+                        <>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Quick walk to terminal</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>No overstay charges</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>No wait guarantee!</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Fully insured by Airparks</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Full EV charge included!</span>
+                          </li>
+                          <li style={{
+                            padding: `${spacing[2]} 0`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: spacing[2],
+                            color: colors.gray[700],
+                          }}>
+                            <span style={{ color: colors.success, fontWeight: typography.fontWeight.bold }}>✓</span>
+                            <span>Gold standard car cleaning</span>
+                          </li>
+                        </>
+                      ) : null}
                     </ul>
                   </div>
                 </>
